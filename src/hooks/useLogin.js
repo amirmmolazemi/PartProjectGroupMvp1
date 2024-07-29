@@ -16,7 +16,7 @@ const useLogin = (username, password) => {
         data: {
           data: { token },
         },
-      } = await api.post("api/v1/auth/login", {
+      } = await api.post("/login", {
         username,
         password,
       });

@@ -12,18 +12,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
-import useCheckCookie from "../hooks/useCheckCookie"; // Adjust the path as needed
+import useCheckCookie from "../hooks/useCheckCookie";
 import ToastContainerPart from "../components/loginPage/ToastContainerPart";
 
 function DashboardPage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Replace 'username' with the actual cookie name you are using
   useCheckCookie();
 
   return (
     <Grid container>
-      {/* Sidebar Drawer for Mobile */}
       <Drawer
         anchor="left"
         open={isDrawerOpen}
@@ -31,7 +29,6 @@ function DashboardPage() {
       >
         <Box sx={{ width: 250 }}></Box>
       </Drawer>
-      {/* Sidebar for Desktop */}
       <Grid
         item
         xs={4}
@@ -56,9 +53,7 @@ function DashboardPage() {
         </Box>
       </Grid>
 
-      {/* Main Content */}
       <Grid item xs={8} sm={10} md={10} lg={10} sx={{ p: 4 }}>
-        {/* Header */}
         <Box
           display="flex"
           justifyContent="space-between"
@@ -93,7 +88,6 @@ function DashboardPage() {
           </Box>
         </Box>
 
-        {/* Statistics Cards */}
         <Grid container spacing={2} mb={4}>
           <Grid item xs={12} sm={4} md={4} lg={4}>
             <Paper sx={{ p: 2, bgcolor: "#E3F2FD" }}>
@@ -121,22 +115,18 @@ function DashboardPage() {
           </Grid>
         </Grid>
 
-        {/* Revenue Chart */}
         <Paper sx={{ p: 2, mb: 4 }}>
           <Typography variant="body1" sx={{ mb: 2 }}>
             Revenue Chart
           </Typography>
-          {/* Chart component goes here */}
         </Paper>
 
-        {/* Transactions and Team Performance */}
         <Grid container spacing={2}>
           <Grid item xs={12} sm={8} md={8} lg={8}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Transactions
               </Typography>
-              {/* Transactions Table goes here */}
             </Paper>
           </Grid>
           <Grid item xs={12} sm={4} md={4} lg={4}>
@@ -144,13 +134,11 @@ function DashboardPage() {
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Oxish Project Team
               </Typography>
-              {/* Team list goes here */}
             </Paper>
             <Paper sx={{ p: 2 }}>
               <Typography variant="body1" sx={{ mb: 2 }}>
                 Upcoming Event Planning
               </Typography>
-              {/* Event details go here */}
             </Paper>
           </Grid>
         </Grid>

@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 
-function UsernameField() {
+function UsernameField({ setUsername }) {
   return (
     <TextField
       variant="outlined"
@@ -9,6 +9,8 @@ function UsernameField() {
       label="Username"
       name="username"
       autoFocus
+      autoComplete="off"
+      onChange={(e) => setUsername(e.target.value)}
       InputLabelProps={{ style: { color: "#fff" } }}
       InputProps={{ style: { color: "#fff" } }}
       sx={{ bgcolor: "#333", borderRadius: 1, mb: 2 }}

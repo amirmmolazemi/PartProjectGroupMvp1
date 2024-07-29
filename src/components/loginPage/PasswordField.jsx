@@ -5,7 +5,7 @@ import {
   Typography,
 } from "@mui/material";
 
-function PasswordField({ showPassword, setShowPassword }) {
+function PasswordField({ showPassword, setShowPassword, setPassword }) {
   return (
     <>
       <TextField
@@ -15,6 +15,7 @@ function PasswordField({ showPassword, setShowPassword }) {
         name="password"
         label="Password"
         type={showPassword ? "text" : "password"}
+        onChange={(e) => setPassword(e.target.value)}
         InputLabelProps={{ style: { color: "#fff" } }}
         InputProps={{ style: { color: "#fff" } }}
         sx={{ bgcolor: "#333", borderRadius: 1, mb: 2 }}

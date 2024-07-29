@@ -1,15 +1,18 @@
-// src/pages/LoginPage.jsx
-
 import { useState } from "react";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import { useTheme, useMediaQuery } from "@mui/material";
+import { Link } from "react-router-dom";
 import UsernameField from "../components/loginPage/UsernameField";
 import PasswordField from "../components/loginPage/PasswordField";
 import SignInButton from "../components/loginPage/SignInButton";
+import ToastContainerPart from "../components/loginPage/ToastContainerPart";
+import useLogin from "../hooks/useLogin";
 
 function LoginPage() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { signInHandler } = useLogin(username, password);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -36,28 +39,29 @@ function LoginPage() {
         <Typography variant="h4" align="center" gutterBottom color="white">
           Welcome Back!
         </Typography>
-        <Box component="form" noValidate sx={{ mt: 3 }}>
-          <UsernameField />
+        <Box
+          component="form"
+          noValidate
+          sx={{ mt: 3 }}
+          onSubmit={signInHandler}
+        >
+          <UsernameField setUsername={setUsername} />
           <PasswordField
             showPassword={showPassword}
             setShowPassword={setShowPassword}
+            setPassword={setPassword}
           />
-          <SignInButton/>
+          <SignInButton />
           <Grid container justifyContent="center">
             <Grid item>
               <Typography variant="body2" color="white">
-                Don't have an account?{" "}
-                <Link
-                  to="/signup"
-                  style={{ color: "white", textDecoration: "underline" }}
-                >
-                  Sign up
-                </Link>
+                Don't have an account? <Link to="/signup">Sign up</Link>
               </Typography>
             </Grid>
           </Grid>
         </Box>
       </Box>
+      <ToastContainerPart />
     </Container>
   );
 }

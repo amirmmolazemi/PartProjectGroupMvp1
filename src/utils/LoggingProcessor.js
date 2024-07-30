@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import api from "../configs/api";
-import toastMaker from "../utils/toastMaker";
+import toastMaker from "./toastMaker";
 
 const useLogin = (username, password) => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const useLogin = (username, password) => {
         password,
       });
       if (token) {
-        Cookies.set(username, token);
+        Cookies.set("token", token);
         navigate("/dashboard");
       }
     } catch ({

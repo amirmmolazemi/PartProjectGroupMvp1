@@ -13,7 +13,7 @@ function PasswordField({ showPassword, setShowPassword, setPassword }) {
         margin="normal"
         fullWidth
         name="password"
-        label="Password"
+        label="گذرواژه"
         type={showPassword ? "text" : "password"}
         onChange={(e) => setPassword(e.target.value)}
         InputLabelProps={{ style: { color: "#fff" } }}
@@ -30,7 +30,7 @@ function PasswordField({ showPassword, setShowPassword, setPassword }) {
         }
         label={
           <Typography variant="body2" color="white">
-            Show Password
+            نمایش گذرواژه
           </Typography>
         }
         sx={{ color: "white" }}

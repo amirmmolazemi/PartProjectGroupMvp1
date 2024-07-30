@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import UsernameField from "../components/loginPage/UsernameField";
 import PasswordField from "../components/loginPage/PasswordField";
 import SignInButton from "../components/loginPage/SignInButton";
-import ToastContainerPart from "../components/loginPage/ToastContainerPart";
-import useLogin from "../hooks/useLogin";
+import ToastContainerPart from "../utils/ToastContainerPart";
+import useLogin from "../utils/LoggingProcessor";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
@@ -37,7 +37,7 @@ function LoginPage() {
         }}
       >
         <Typography variant="h4" align="center" gutterBottom color="white">
-          Welcome Back!
+          خوش آمدید
         </Typography>
         <Box
           component="form"
@@ -54,8 +54,8 @@ function LoginPage() {
           <SignInButton />
           <Grid container justifyContent="center">
             <Grid item>
-              <Typography variant="body2" color="white">
-                Don't have an account? <Link to="/signup">Sign up</Link>
+              <Typography variant="body2" color="white" fontWeight={500}>
+                ایا اکانت ندارید؟ <Link to="/signup">ثبت نام کنید </Link>
               </Typography>
             </Grid>
           </Grid>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import notFoundImage from "../assets/404.png";
@@ -19,11 +18,11 @@ function NotFound() {
             mb: 3,
           }}
         />
-        <Typography variant="h3" gutterBottom color="white">
-          404 - Page Not Found
+        <Typography variant="h3" gutterBottom>
+          ارور 404 - صفحه پیدا نشد
         </Typography>
-        <Typography variant="body1" color="white" paragraph>
-          Oops! The page you are looking for does not exist.
+        <Typography variant="body1" paragraph>
+          صفحه ی مورد نظر شما پیدا نشد
         </Typography>
         <Button
           component={Link}
@@ -32,7 +31,7 @@ function NotFound() {
           color="primary"
           sx={{ mt: 3 }}
         >
-          <Link to="/login">Go Home</Link>
+          رفتن به صفحه ی اصلی
         </Button>
       </Box>
     </Container>

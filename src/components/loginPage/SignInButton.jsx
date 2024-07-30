@@ -9,7 +9,7 @@ function SignInButton() {
       color="primary"
       sx={{ mt: 2, mb: 2 }}
     >
-      Sign In
+      ورود
     </Button>
   );
 }

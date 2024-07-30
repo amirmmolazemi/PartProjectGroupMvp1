@@ -1,6 +1,32 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
+  font-family: "YekanBakh", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.custom-label {
+  transform-origin: right !important;
+  left: inherit !important;
+  right: 1.75rem !important;
+  direction: rtl;
+  white-space: nowrap; /* Prevents label from breaking into multiple lines */
+}
+
+.custom-input:focus ~ .custom-label {
+  color: #fff; /* Adjust color to your preference when focused */
+  transform: translateY(-50%) scale(0.75); /* Adjust position to ensure label is not covered */
+}
+
+input::placeholder {
+  direction: rtl;
 }
 
 body {

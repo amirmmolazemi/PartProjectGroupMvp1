@@ -4,11 +4,9 @@ import api from "../configs/api";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const useCheckCookie = () => {
+const useCheckCookie = async () => {
   const navigate = useNavigate();
-  const cookie = document.cookie.split("; ")[0];
-  const tokenName = cookie.split("=")[0];
-  const token = cookie.split("=")[1];
+  const token = Cookies.get("token");
   useEffect(() => {
     if (!token) {
       navigate("/login");
@@ -19,7 +17,7 @@ const useCheckCookie = () => {
         const { status } = await api.post("/verify-token", { token });
         status == 200 && toastMaker("success", "User logged in successfully");
       } catch ({ response }) {
-        response.status == 401 && Cookies.remove(tokenName);
+        response.status == 401 && Cookies.remove("token");
         navigate("/login");
       }
     };

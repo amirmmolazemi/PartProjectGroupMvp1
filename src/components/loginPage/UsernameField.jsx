@@ -6,8 +6,8 @@ function UsernameField({ setUsername }) {
       variant="outlined"
       margin="normal"
       fullWidth
-      label="Username"
-      name="username"
+      label="نام کاربری"
+      name="Username"
       autoFocus
       autoComplete="off"
       onChange={(e) => setUsername(e.target.value)}

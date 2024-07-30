@@ -5,7 +5,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import useJalaliDate from "../../utils/jalaliDateGenerator";
 
-function DashboardTopbar({ setIsDrawerOpen }) {
+function DashboardTopbar({ setIsDrawerOpen, username }) {
   const date = useJalaliDate();
 
   return (
@@ -39,7 +39,7 @@ function DashboardTopbar({ setIsDrawerOpen }) {
         <IconButton>
           <SettingsIcon />
         </IconButton>
-        <Avatar alt="John Smith" src="/path/to/avatar.jpg" sx={{ ml: 2 }} />
+        <Avatar alt={username} src="/path/to/avatar.jpg" sx={{ ml: 2 }} />
       </Box>
     </Box>
   );

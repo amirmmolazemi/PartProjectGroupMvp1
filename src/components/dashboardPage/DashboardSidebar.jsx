@@ -16,7 +16,7 @@ function DashboardSidebar({ username, email }) {
     >
       <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
         <Avatar
-          alt="John Smith"
+          alt={username}
           src="/path/to/avatar.jpg"
           sx={{ width: 56, height: 56 }}
         />

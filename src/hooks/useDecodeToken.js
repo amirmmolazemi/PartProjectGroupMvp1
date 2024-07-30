@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import toastMaker from "../utils/toastMaker";
 import Cookies from "js-cookie";
+import useCheckCookie from "./useCheckCookie";
 
 const useDecodeToken = () => {
   const [decodedToken, setDecodedToken] = useState(null);
   const [loading, setLoading] = useState(true);
+  useCheckCookie();
 
   useEffect(() => {
     const decodeToken = () => {

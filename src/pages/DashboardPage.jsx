@@ -29,7 +29,10 @@ function DashboardPage() {
       </Drawer>
       <DashboardSidebar username={userName} email={userEmail} />
       <Grid item xs={8} sm={10} md={10} lg={10} sx={{ p: 4 }}>
-        <DashboardTopbar setIsDrawerOpen={setIsDrawerOpen} />
+        <DashboardTopbar
+          setIsDrawerOpen={setIsDrawerOpen}
+          username={userName}
+        />
         <DashboardContent />
       </Grid>
       <ToastContainerPart />

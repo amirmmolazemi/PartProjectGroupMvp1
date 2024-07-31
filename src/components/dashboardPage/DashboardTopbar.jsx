@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, IconButton, Typography, Avatar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -14,6 +15,10 @@ function DashboardTopbar({ setIsDrawerOpen, username }) {
       justifyContent="space-between"
       alignItems="center"
       mb={4}
+      p={2}
+      bgcolor="#fff"
+      boxShadow="0 2px 4px rgba(0, 0, 0, 0.1)"
+      borderRadius={2}
     >
       <Box display="flex" alignItems="center">
         <IconButton
@@ -22,9 +27,8 @@ function DashboardTopbar({ setIsDrawerOpen, username }) {
         >
           <MenuIcon />
         </IconButton>
-        <Box>
-          <Typography variant="h4">داشبورد</Typography>
-          <Typography variant="body2" color="textSecondary" fontWeight={600}>
+        <Box ml={2}>
+          <Typography variant="h6" color="textSecondary">
             {date}
           </Typography>
         </Box>

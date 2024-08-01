@@ -3,6 +3,7 @@ import LoginPage from "../pages/LoginPage";
 import NotFound from "../pages/404";
 import SignupPage from "../pages/SignupPage";
 import DashboardPage from "../pages/DashboardPage";
+import Tickets from "../pages/Tickets";
 
 function Router() {
   return (
@@ -12,6 +13,7 @@ function Router() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/tickets" element={<Tickets />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

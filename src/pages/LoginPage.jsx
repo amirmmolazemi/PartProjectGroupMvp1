@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import UsernameField from "../components/loginPage/UsernameField";
 import PasswordField from "../components/loginPage/PasswordField";
 import SignInButton from "../components/loginPage/SignInButton";
-import ToastContainerPart from "../utils/ToastContainerPart";
 import useLogin from "../utils/LoggingProcessor";
 
 function LoginPage() {
@@ -61,7 +60,6 @@ function LoginPage() {
           </Grid>
         </Box>
       </Box>
-      <ToastContainerPart />
     </Container>
   );
 }

@@ -1,13 +1,12 @@
-import React from "react";
-import { Box, IconButton, Typography, Avatar } from "@mui/material";
+import { Box, IconButton, Typography, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import SettingsIcon from "@mui/icons-material/Settings";
 import useJalaliDate from "../../utils/jalaliDateGenerator";
+import { WbSunny } from "@mui/icons-material";
 
-function DashboardTopbar({ setIsDrawerOpen, username }) {
+function DashboardTopbar({ setIsDrawerOpen }) {
   const date = useJalaliDate();
+  const isUnder805px = useMediaQuery("(max-width: 925px)");
 
   return (
     <Box
@@ -21,29 +20,26 @@ function DashboardTopbar({ setIsDrawerOpen, username }) {
       borderRadius={2}
     >
       <Box display="flex" alignItems="center">
-        <IconButton
-          sx={{ display: { xs: "block", sm: "none" } }}
-          onClick={() => setIsDrawerOpen(true)}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Box ml={2}>
-          <Typography variant="h6" color="textSecondary">
-            {date}
-          </Typography>
-        </Box>
-      </Box>
-      <Box display="flex" alignItems="center">
         <IconButton>
           <SearchIcon />
         </IconButton>
         <IconButton>
-          <NotificationsIcon />
+          <WbSunny />
         </IconButton>
-        <IconButton>
-          <SettingsIcon />
-        </IconButton>
-        <Avatar alt={username} src="/path/to/avatar.jpg" sx={{ ml: 2 }} />
+      </Box>
+      <Box display="flex" alignItems="center">
+        {isUnder805px && (
+          <IconButton onClick={() => setIsDrawerOpen(true)}>
+            <MenuIcon />
+          </IconButton>
+        )}
+        {!isUnder805px && (
+          <Box ml={2}>
+            <Typography variant="h6" color="textSecondary">
+              {date}
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Box>
   );

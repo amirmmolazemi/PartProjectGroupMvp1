@@ -1,4 +1,3 @@
-// DashboardContent.js
 import { Grid, Paper, Typography } from "@mui/material";
 import DashboardInformationCard from "./DashboardInformationCard";
 
@@ -12,7 +11,7 @@ function DashboardContent() {
           bgColor="#FFF3E0"
         />
         <DashboardInformationCard
-          message="تیکت های بسته شده:"
+          message="تیکت های بسته:"
           count={17}
           bgColor="#E3F2FD"
         />

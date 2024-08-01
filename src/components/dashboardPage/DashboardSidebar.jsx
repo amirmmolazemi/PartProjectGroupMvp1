@@ -17,13 +17,15 @@ function DashboardSidebar({ onClose }) {
     <Box
       sx={{
         bgcolor: "#FFF",
-        height: "93%",
+        color: "#1976d2",
+        width: "97%",
+        height: "95vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-between",
         position: "relative",
-        top: "3.5vh",
+        top: "2.5vh",
         right: "1vw",
         borderRadius: "8px",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
@@ -44,21 +46,21 @@ function DashboardSidebar({ onClose }) {
           sx={{ width: 50, height: 50, mb: 2 }}
         />
         <List sx={{ width: "100%" }}>
-          <ListItem button component={Link} to="/dashboard" onClick={onClose}>
+          <ListItem button component={Link} to="/dashboard">
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary="داشبورد" />
           </ListItem>
-          <ListItem button component={Link} to="/tickets" onClick={onClose}>
+          <ListItem button component={Link} to="/tickets">
             <ListItemIcon>
               <AssignmentIcon />
             </ListItemIcon>
             <ListItemText primary="تیکت ها" />
           </ListItem>
-          <ListItem button component={Link} to="/settings" onClick={onClose}>
+          <ListItem button component={Link} to="/settings">
             <ListItemIcon>
-              <SettingsIcon />
+              <SettingsIcon color="#1976d2" />
             </ListItemIcon>
             <ListItemText primary="تنظیمات" />
           </ListItem>
@@ -74,7 +76,7 @@ function DashboardSidebar({ onClose }) {
         }}
       >
         <List sx={{ width: "100%" }}>
-          <ListItem button component={Link} to="/logout" onClick={onClose}>
+          <ListItem button component={Link} to="/logout">
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>

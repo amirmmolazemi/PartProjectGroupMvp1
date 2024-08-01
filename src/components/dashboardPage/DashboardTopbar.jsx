@@ -6,7 +6,7 @@ import { WbSunny } from "@mui/icons-material";
 
 function DashboardTopbar({ setIsDrawerOpen }) {
   const date = useJalaliDate();
-  const isUnder805px = useMediaQuery("(max-width: 925px)");
+  const isUnder955px = useMediaQuery("(max-width: 955px)");
 
   return (
     <Box
@@ -28,12 +28,12 @@ function DashboardTopbar({ setIsDrawerOpen }) {
         </IconButton>
       </Box>
       <Box display="flex" alignItems="center">
-        {isUnder805px && (
+        {isUnder955px && (
           <IconButton onClick={() => setIsDrawerOpen(true)}>
             <MenuIcon />
           </IconButton>
         )}
-        {!isUnder805px && (
+        {!isUnder955px && (
           <Box ml={2}>
             <Typography variant="h6" color="textSecondary">
               {date}

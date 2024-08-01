@@ -8,7 +8,7 @@ import useDecodeToken from "../hooks/useDecodeToken";
 
 function DashboardPage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const isUnder925px = useMediaQuery("(max-width: 925px)");
+  const isUnder955px = useMediaQuery("(max-width: 955px)");
   // const { userName, userEmail, loading } = useDecodeToken();
 
   // if (loading) {
@@ -18,7 +18,7 @@ function DashboardPage() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      {isUnder925px ? (
+      {isUnder955px ? (
         <Drawer
           anchor="right"
           open={isDrawerOpen}
@@ -49,7 +49,7 @@ function DashboardPage() {
         sx={{
           flexGrow: 1,
           padding: 3,
-          marginRight: isUnder925px ? 0 : "15%",
+          marginRight: isUnder955px ? 0 : "15%",
           transition: "margin-right 0.3s",
         }}
       >

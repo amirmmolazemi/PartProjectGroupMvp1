@@ -11,9 +11,9 @@ function MenuItem({ to, icon, label, mt = 0 }) {
         justifyContent: "center",
         gap: 1.5,
         mt,
-        color: "primary.main", // Ensuring consistent color scheme
+        color: "primary.main",
         "&:hover": {
-          bgcolor: "rgba(0, 0, 0, 0.05)", // Adding a hover effect
+          bgcolor: "rgba(0, 0, 0, 0.05)",
         },
       }}
     >

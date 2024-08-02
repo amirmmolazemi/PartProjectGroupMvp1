@@ -8,12 +8,12 @@ function DashboardContent() {
         <DashboardInformationCard
           message="مجموع کل تیکت ها"
           count={20}
-          bgColor="#FFF3E0"
+          bgColor="#E3F2FD"
         />
         <DashboardInformationCard
           message="تیکت های بسته:"
           count={17}
-          bgColor="#E3F2FD"
+          bgColor="#FFF3E0"
         />
         <DashboardInformationCard
           message="تیکت های باز:"

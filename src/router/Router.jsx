@@ -3,7 +3,7 @@ import LoginPage from "../pages/LoginPage";
 import NotFound from "../pages/404";
 import SignupPage from "../pages/SignupPage";
 import DashboardPage from "../pages/DashboardPage";
-import TicketsPage from "../pages/Tickets";
+import TicketsPage from "../pages/TicketsPage";
 import SettingPage from "../pages/SettingPage";
 import Layout from "../layout/Layout";
 

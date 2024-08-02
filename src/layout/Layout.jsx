@@ -8,9 +8,10 @@ import Loader from "../components/Loader/Loader";
 function Layout({ children }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isUnder955px = useMediaQuery("(max-width: 955px)");
-  const { data, loading } = useDecodeToken();
 
-  if (loading) return <Loader />;
+  // const { data, loading } = useDecodeToken();
+
+  // if (loading) return <Loader />;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -21,7 +22,12 @@ function Layout({ children }) {
           open={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
           sx={{
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: 210,
+              transform: `translateX(${isDrawerOpen ? "0%" : "-100%"})`,
+              transition: "transform 0.3s ease",
+            },
           }}
         >
           <Sidebar onClose={() => setIsDrawerOpen(false)} />

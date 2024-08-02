@@ -5,7 +5,8 @@ import DashboardPage from "../pages/DashboardPage";
 import TicketsPage from "../pages/TicketsPage";
 import SettingPage from "../pages/SettingPage";
 import Layout from "../layout/Layout";
-import AddTicket from "../pages/AddTicket";
+import AddTicketForm from "../pages/AddTicketFormPage";
+import TicketChat from "../pages/TicketChat";
 
 function Router() {
   return (
@@ -43,7 +44,8 @@ function Router() {
           </Layout>
         }
       />
-      <Route path="/add" element={<AddTicket />} />
+      <Route path="/add" element={<AddTicketForm />} />
+      <Route path="/chat" element={<TicketChat />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

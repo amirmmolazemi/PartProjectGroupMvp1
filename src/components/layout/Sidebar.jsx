@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Avatar,
@@ -7,30 +8,41 @@ import {
   ListItemText,
 } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import menuOptions from "../../constant/menuOptions";
-import logOut from "../../utils/logOutHandler";
+import toastMaker from "../../utils/toastMaker";
 
 function Sidebar({ onClose }) {
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    try {
+      Cookies.remove("token");
+      navigate("/login");
+    } catch (error) {
+      toastMaker("error", "خروج با شکست همراه شد");
+    }
+  };
+
+  const BoxStyle = {
+    bgcolor: "#FFF",
+    color: "#1976d2",
+    width: "97%",
+    height: "95vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    position: "relative",
+    top: "2.5vh",
+    right: "1.2vw",
+    borderRadius: "12px",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",
+    padding: "20px 0",
+  };
+
   return (
-    <Box
-      sx={{
-        bgcolor: "#FFF",
-        color: "#1976d2",
-        width: "97%",
-        height: "95vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "space-between",
-        position: "relative",
-        top: "2.5vh",
-        right: "1vw",
-        borderRadius: "12px",
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",
-        padding: "20px 0",
-      }}
-    >
+    <Box sx={BoxStyle}>
       <Box
         sx={{
           display: "flex",
@@ -71,13 +83,7 @@ function Sidebar({ onClose }) {
         }}
       >
         <List sx={{ width: "100%" }}>
-          <ListItem
-            button
-            component={Link}
-            to="/login"
-            onClick={logOut}
-            sx={{ borderRadius: 2 }}
-          >
+          <ListItem button onClick={logOut} sx={{ borderRadius: 2 }}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>

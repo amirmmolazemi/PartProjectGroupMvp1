@@ -6,13 +6,12 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import SettingsIcon from "@mui/icons-material/Settings";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
+import menuOptions from "../../constant/menuOptions";
+import logOut from "../../utils/logOutHandler";
 
-function Sidebar() {
+function Sidebar({ onClose }) {
   return (
     <Box
       sx={{
@@ -27,9 +26,9 @@ function Sidebar() {
         position: "relative",
         top: "2.5vh",
         right: "1vw",
-        borderRadius: "8px",
-        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        padding: "10px 0",
+        borderRadius: "12px",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",
+        padding: "20px 0",
       }}
     >
       <Box
@@ -46,27 +45,23 @@ function Sidebar() {
           sx={{ width: 50, height: 50, mb: 2 }}
         />
         <List sx={{ width: "100%" }}>
-          <ListItem button component={Link} to="/dashboard">
-            <ListItemIcon>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="داشبورد" />
-          </ListItem>
-          <ListItem button component={Link} to="/tickets">
-            <ListItemIcon>
-              <AssignmentIcon />
-            </ListItemIcon>
-            <ListItemText primary="تیکت ها" />
-          </ListItem>
-          <ListItem button component={Link} to="/settings">
-            <ListItemIcon>
-              <SettingsIcon color="#1976d2" />
-            </ListItemIcon>
-            <ListItemText primary="تنظیمات" />
-          </ListItem>
+          {menuOptions.map((item) => (
+            <ListItem
+              button
+              component={Link}
+              to={item.to}
+              onClick={onClose}
+              key={item.id}
+              sx={{ borderRadius: 2 }}
+            >
+              <ListItemIcon>
+                <item.icon />
+              </ListItemIcon>
+              <ListItemText primary={item.text} />
+            </ListItem>
+          ))}
         </List>
       </Box>
-
       <Box
         sx={{
           width: "100%",
@@ -76,7 +71,13 @@ function Sidebar() {
         }}
       >
         <List sx={{ width: "100%" }}>
-          <ListItem button component={Link} to="/logout">
+          <ListItem
+            button
+            component={Link}
+            to="/login"
+            onClick={logOut}
+            sx={{ borderRadius: 2 }}
+          >
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>

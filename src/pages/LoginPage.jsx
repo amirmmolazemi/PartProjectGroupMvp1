@@ -1,19 +1,16 @@
 import { useState } from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { useTheme, useMediaQuery } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Container, Typography } from "@mui/material";
 import UsernameField from "../components/loginPage/UsernameField";
 import PasswordField from "../components/loginPage/PasswordField";
 import SignInButton from "../components/loginPage/SignInButton";
-import loggingProcessingHandler from "../utils/loggingProcessingHandler";
+import loginHandler from "../utils/loginHandler";
+import ShowPasswordCheckBox from "../components/loginPage/ShowPasswordCheckBox";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = loggingProcessingHandler(username, password);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { login } = loginHandler(username, password);
 
   return (
     <Container
@@ -31,7 +28,6 @@ function LoginPage() {
           bgcolor: "#1d1d1d",
           borderRadius: 3,
           boxShadow: 3,
-          width: isMobile ? "90%" : "100%",
           maxWidth: 400,
         }}
       >
@@ -45,14 +41,11 @@ function LoginPage() {
             setShowPassword={setShowPassword}
             setPassword={setPassword}
           />
+          <ShowPasswordCheckBox
+            setShowPassword={setShowPassword}
+            setPassword={setPassword}
+          />
           <SignInButton />
-          <Grid container justifyContent="center">
-            <Grid item>
-              <Typography variant="body2" color="white" fontWeight={500}>
-                ایا اکانت ندارید؟ <Link to="/signup">ثبت نام کنید </Link>
-              </Typography>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
     </Container>

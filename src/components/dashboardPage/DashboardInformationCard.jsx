@@ -18,7 +18,7 @@ function DashboardInformationCard({ message, count, bgColor }) {
         <Typography variant="h6" fontWeight={700} color="primary">
           {message}
         </Typography>
-        <Typography variant="h4" sx={{ mt: 1 }}>
+        <Typography variant="h4" sx={{ mt: 1 }} color="primary">
           {count}
         </Typography>
       </Paper>

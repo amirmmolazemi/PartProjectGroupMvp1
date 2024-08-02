@@ -3,46 +3,47 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  Select,
-  MenuItem,
   TextField,
-  Box,
+  Grid,
 } from "@mui/material";
 
 const TicketFilters = ({
   filter,
   searchQuery,
-  statusFilter,
   onFilterChange,
   onSearchChange,
-  onStatusChange,
 }) => (
-  <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-    <Paper elevation={2} sx={{ p: 2 }}>
-      <RadioGroup row value={filter} onChange={onFilterChange}>
-        <FormControlLabel value="All" control={<Radio />} label="All" />
-        <FormControlLabel value="Open" control={<Radio />} label="Open" />
-        <FormControlLabel
-          value="InProgress"
-          control={<Radio />}
-          label="In progress"
+  <Paper elevation={3} sx={{ p: 2 }}>
+    <Grid container alignItems="center">
+      <Grid item md={6}>
+        <RadioGroup
+          value={filter}
+          onChange={onFilterChange}
+          sx={{
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
+          <FormControlLabel value="All" control={<Radio />} label="همه" />
+          <FormControlLabel value="Open" control={<Radio />} label="باز" />
+          <FormControlLabel
+            value="InProgress"
+            control={<Radio />}
+            label="در حال بررسی"
+          />
+          <FormControlLabel value="Closed" control={<Radio />} label="بسته" />
+        </RadioGroup>
+      </Grid>
+      <Grid item md={6}>
+        <TextField
+          label="جستجو در تیکت ها"
+          variant="outlined"
+          value={searchQuery}
+          onChange={onSearchChange}
+          fullWidth
         />
-        <FormControlLabel value="Closed" control={<Radio />} label="Closed" />
-      </RadioGroup>
-    </Paper>
-    <Box display="flex" alignItems="center" gap={2} mr={2}>
-      <Select value={statusFilter} onChange={onStatusChange}>
-        <MenuItem value="All">Latest created</MenuItem>
-        <MenuItem value="Priority">Priority</MenuItem>
-      </Select>
-      <TextField
-        label="Search Tickets"
-        variant="outlined"
-        value={searchQuery}
-        onChange={onSearchChange}
-      />
-    </Box>
-  </Box>
+      </Grid>
+    </Grid>
+  </Paper>
 );
 
 export default TicketFilters;

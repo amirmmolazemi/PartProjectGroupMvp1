@@ -6,47 +6,64 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  useMediaQuery,
+  Select,
+  MenuItem,
 } from "@mui/material";
 
-const TableCellStyle = { textAlign: "center" };
+const TicketTable = ({ tickets, filter, isStatusEdit, onStatusChange }) => {
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
-const TicketTable = ({ tickets, filter }) => (
-  <Paper elevation={3}>
-    <TableContainer>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell sx={TableCellStyle}>ID</TableCell>
-            <TableCell sx={TableCellStyle}>Priority</TableCell>
-            <TableCell sx={TableCellStyle}>Assignee</TableCell>
-            <TableCell sx={TableCellStyle}>Description</TableCell>
-            <TableCell sx={TableCellStyle}>Status</TableCell>
-            <TableCell sx={TableCellStyle}>Released by</TableCell>
-            <TableCell sx={TableCellStyle}>Created on</TableCell>
-            <TableCell sx={TableCellStyle}>Completion Date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {tickets
-            .filter((ticket) => filter === "All" || ticket.status === filter)
-            .map((ticket) => (
-              <TableRow key={ticket.id}>
-                <TableCell sx={TableCellStyle}>{ticket.id}</TableCell>
-                <TableCell sx={TableCellStyle}>{ticket.priority}</TableCell>
-                <TableCell sx={TableCellStyle}>{ticket.assignee}</TableCell>
-                <TableCell sx={TableCellStyle}>{ticket.description}</TableCell>
-                <TableCell sx={TableCellStyle}>{ticket.status}</TableCell>
-                <TableCell sx={TableCellStyle}>{ticket.releasedBy}</TableCell>
-                <TableCell sx={TableCellStyle}>{ticket.createdOn}</TableCell>
-                <TableCell sx={TableCellStyle}>
-                  {ticket.completionDate}
+  const tableCellStyle = {
+    textAlign: "center",
+    maxWidth: isSmallScreen ? "70px" : "100px",
+  };
+
+  const filteredTickets = tickets.filter(
+    (ticket) => filter === "All" || ticket.status === filter
+  );
+
+  return (
+    <Paper elevation={3} sx={{ mt: 2, p: 2 }}>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell sx={tableCellStyle}>Assignee</TableCell>
+              <TableCell sx={tableCellStyle}>Description</TableCell>
+              <TableCell sx={tableCellStyle}>Priority</TableCell>
+              <TableCell sx={tableCellStyle}>Status</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredTickets.map((ticket, index) => (
+              <TableRow key={index}>
+                <TableCell sx={tableCellStyle}>{ticket.assignee}</TableCell>
+                <TableCell sx={tableCellStyle}>{ticket.description}</TableCell>
+                <TableCell sx={tableCellStyle}>{ticket.priority}</TableCell>
+                <TableCell sx={tableCellStyle}>
+                  {isStatusEdit ? (
+                    <Select
+                      value={ticket.status}
+                      onChange={(e) => onStatusChange(index, e.target.value)}
+                      sx={{ fontSize: "0.8rem" }}
+                      size="small"
+                    >
+                      <MenuItem value="Open">باز</MenuItem>
+                      <MenuItem value="InProgress">در حال بررسی</MenuItem>
+                      <MenuItem value="Closed">بسته</MenuItem>
+                    </Select>
+                  ) : (
+                    ticket.status
+                  )}
                 </TableCell>
               </TableRow>
             ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  </Paper>
-);
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
+  );
+};
 
 export default TicketTable;

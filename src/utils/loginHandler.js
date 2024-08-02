@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import api from "../configs/api";
 import toastMaker from "./toastMaker";
 
-const loggingProcessingHandler = (username, password) => {
+const loginHandler = (username, password) => {
   const navigate = useNavigate();
   const login = async (e) => {
     e.preventDefault();
@@ -31,4 +31,4 @@ const loggingProcessingHandler = (username, password) => {
   return { login };
 };
 
-export default loggingProcessingHandler;
+export default loginHandler;

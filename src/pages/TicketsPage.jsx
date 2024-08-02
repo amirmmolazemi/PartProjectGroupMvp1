@@ -2,49 +2,59 @@ import { useState } from "react";
 import { Container, Typography } from "@mui/material";
 import TicketFilters from "../components/ticketsPage/TicketFilters";
 import TicketTable from "../components/ticketsPage/TicketTable";
+import ButtonActions from "../components/ticketsPage/ActionButtons";
 
-const tickets = [
+const initialTickets = [
   {
-    id: "ABC000089",
     priority: "P2",
     assignee: "Assignee Name",
-    description: "Lorem ipsum dolor sit amet, consectetur",
-    status: "Resolved",
-    releasedBy: "Engineer Name",
-    createdOn: "21.MAR.2020",
-    completionDate: "21.MAR.2020",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    status: "Closed",
   },
   {
-    id: "ABC000088",
     priority: "P1",
     assignee: "Assignee Name",
-    description: "Nullam rutrum mollis orci at dapibus",
-    status: "Open",
-    releasedBy: "Engineer Name",
-    createdOn: "18.MAR.2020",
-    completionDate: "22.MAR.2020",
+    description:
+      "Nullam rutrum mollis orci at dapibus. Aenean gravida tristique eros ut euismod.",
+    status: "Closed",
   },
 ];
 
 function TicketsPage() {
+  const [tickets, setTickets] = useState(initialTickets);
   const [filter, setFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState("All");
+  const [isStatusEdit, setIsStatusEdit] = useState(false);
+
+  const handleStatusChange = (index, newStatus) => {
+    const updatedTickets = tickets.map((ticket, i) =>
+      i === index ? { ...ticket, status: newStatus } : ticket
+    );
+    setTickets(updatedTickets);
+  };
 
   return (
     <Container maxWidth="lg" sx={{ mt: 2 }}>
       <Typography variant="h4" gutterBottom>
-        Ticket List
+        تیکت های زده شده
       </Typography>
+      <ButtonActions
+        onToggleStatusEdit={() => setIsStatusEdit((prev) => !prev)}
+        isStatusEdit={isStatusEdit}
+      />
       <TicketFilters
         filter={filter}
         searchQuery={searchQuery}
-        statusFilter={statusFilter}
         onFilterChange={(e) => setFilter(e.target.value)}
         onSearchChange={(e) => setSearchQuery(e.target.value)}
-        onStatusChange={(e) => setStatusFilter(e.target.value)}
       />
-      <TicketTable tickets={tickets} filter={filter} />
+      <TicketTable
+        tickets={tickets}
+        filter={filter}
+        isStatusEdit={isStatusEdit}
+        onStatusChange={handleStatusChange}
+      />
     </Container>
   );
 }

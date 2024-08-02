@@ -1,12 +1,13 @@
 import { Box, IconButton, Typography, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import jalaliDateGenerator from "../../utils/jalaliDateGenerator";
-import { WbSunny } from "@mui/icons-material";
+import { Add, WbSunny } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function Header({ setIsDrawerOpen }) {
   const date = jalaliDateGenerator();
   const isUnder955px = useMediaQuery("(max-width: 955px)");
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -16,15 +17,15 @@ function Header({ setIsDrawerOpen }) {
       mb={4}
       p={2}
       bgcolor="#fff"
-      boxShadow="0 2px 4px rgba(0, 0, 0, 0.1)"
+      boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
       borderRadius={2}
     >
       <Box display="flex" alignItems="center">
         <IconButton>
-          <SearchIcon />
-        </IconButton>
-        <IconButton>
           <WbSunny />
+        </IconButton>
+        <IconButton onClick={() => navigate("/add")}>
+          <Add />
         </IconButton>
       </Box>
       <Box display="flex" alignItems="center">

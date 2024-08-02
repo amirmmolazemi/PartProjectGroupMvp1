@@ -1,11 +1,6 @@
-import {
-  TextField,
-  Checkbox,
-  FormControlLabel,
-  Typography,
-} from "@mui/material";
+import { TextField } from "@mui/material";
 
-function PasswordField({ showPassword, setShowPassword, setPassword }) {
+function PasswordField({ showPassword, setPassword }) {
   return (
     <>
       <TextField
@@ -19,21 +14,6 @@ function PasswordField({ showPassword, setShowPassword, setPassword }) {
         InputLabelProps={{ style: { color: "#fff" } }}
         InputProps={{ style: { color: "#fff" } }}
         sx={{ bgcolor: "#333", borderRadius: 1, mb: 2 }}
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={showPassword}
-            onChange={() => setShowPassword((prev) => !prev)}
-            sx={{ color: "#fff" }}
-          />
-        }
-        label={
-          <Typography variant="body2" color="white">
-            نمایش گذرواژه
-          </Typography>
-        }
-        sx={{ color: "white" }}
       />
     </>
   );

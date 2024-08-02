@@ -17,12 +17,12 @@ code {
   left: inherit !important;
   right: 1.75rem !important;
   direction: rtl;
-  white-space: nowrap; /* Prevents label from breaking into multiple lines */
+  white-space: nowrap;
 }
 
 .custom-input:focus ~ .custom-label {
-  color: #fff; /* Adjust color to your preference when focused */
-  transform: translateY(-50%) scale(0.75); /* Adjust position to ensure label is not covered */
+  color: #fff;
+  transform: translateY(-50%) scale(0.75);
 }
 
 input::placeholder {

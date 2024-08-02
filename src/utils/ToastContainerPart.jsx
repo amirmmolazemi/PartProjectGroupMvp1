@@ -14,7 +14,6 @@ function ToastContainerPart() {
       draggable
       pauseOnHover={false}
       theme="dark"
-      transition:Bounce
     />
   );
 }

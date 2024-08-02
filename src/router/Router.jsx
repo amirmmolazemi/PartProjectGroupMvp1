@@ -8,17 +8,15 @@ import SettingPage from "../pages/SettingPage";
 
 function Router() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/tickets" element={<TicketsPage />} />
-        <Route path="/settings" element={<SettingPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/tickets" element={<TicketsPage />} />
+      <Route path="/settings" element={<SettingPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 

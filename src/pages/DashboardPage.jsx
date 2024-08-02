@@ -9,7 +9,7 @@ import useDecodeToken from "../hooks/useDecodeToken";
 function DashboardPage() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isUnder955px = useMediaQuery("(max-width: 955px)");
-  // const { userName, userEmail, loading } = useDecodeToken();
+  // const { data, loading } = useDecodeToken();
 
   // if (loading) {
   //   return <Loader />;

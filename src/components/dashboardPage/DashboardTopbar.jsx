@@ -1,11 +1,11 @@
 import { Box, IconButton, Typography, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import useJalaliDate from "../../utils/jalaliDateGenerator";
+import jalaliDateGenerator from "../../utils/jalaliDateGenerator";
 import { WbSunny } from "@mui/icons-material";
 
 function DashboardTopbar({ setIsDrawerOpen }) {
-  const date = useJalaliDate();
+  const date = jalaliDateGenerator();
   const isUnder955px = useMediaQuery("(max-width: 955px)");
 
   return (

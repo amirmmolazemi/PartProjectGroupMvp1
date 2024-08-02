@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 import UsernameField from "../components/loginPage/UsernameField";
 import PasswordField from "../components/loginPage/PasswordField";
 import SignInButton from "../components/loginPage/SignInButton";
-import useLogin from "../utils/LoggingProcessor";
+import loggingProcessingHandler from "../utils/loggingProcessingHandler";
 
 function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { signInHandler } = useLogin(username, password);
+  const { login } = loggingProcessingHandler(username, password);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -38,12 +38,7 @@ function LoginPage() {
         <Typography variant="h4" align="center" gutterBottom color="white">
           خوش آمدید
         </Typography>
-        <Box
-          component="form"
-          noValidate
-          sx={{ mt: 3 }}
-          onSubmit={signInHandler}
-        >
+        <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={login}>
           <UsernameField setUsername={setUsername} />
           <PasswordField
             showPassword={showPassword}

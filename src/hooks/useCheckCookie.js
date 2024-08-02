@@ -4,7 +4,7 @@ import api from "../configs/api";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-const useCheckCookie = async () => {
+const useCheckCookie = () => {
   const navigate = useNavigate();
   const token = Cookies.get("token");
   useEffect(() => {

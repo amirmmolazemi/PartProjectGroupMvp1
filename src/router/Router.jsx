@@ -5,16 +5,45 @@ import SignupPage from "../pages/SignupPage";
 import DashboardPage from "../pages/DashboardPage";
 import TicketsPage from "../pages/Tickets";
 import SettingPage from "../pages/SettingPage";
+import Layout from "../layout/Layout";
 
 function Router() {
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
-      <Route path="/dashboard" element={<DashboardPage />} />
-      <Route path="/tickets" element={<TicketsPage />} />
-      <Route path="/settings" element={<SettingPage />} />
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <DashboardPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/dashboard"
+        element={
+          <Layout>
+            <DashboardPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/tickets"
+        element={
+          <Layout>
+            <TicketsPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <Layout>
+            <SettingPage />
+          </Layout>
+        }
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

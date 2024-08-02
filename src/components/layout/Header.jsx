@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import jalaliDateGenerator from "../../utils/jalaliDateGenerator";
 import { WbSunny } from "@mui/icons-material";
 
-function DashboardTopbar({ setIsDrawerOpen }) {
+function Header({ setIsDrawerOpen }) {
   const date = jalaliDateGenerator();
   const isUnder955px = useMediaQuery("(max-width: 955px)");
 
@@ -45,4 +45,4 @@ function DashboardTopbar({ setIsDrawerOpen }) {
   );
 }
 
-export default DashboardTopbar;
+export default Header;

@@ -12,7 +12,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 
-function DashboardSidebar({ onClose }) {
+function Sidebar() {
   return (
     <Box
       sx={{
@@ -88,4 +88,4 @@ function DashboardSidebar({ onClose }) {
   );
 }
 
-export default DashboardSidebar;
+export default Sidebar;

@@ -18,7 +18,7 @@ const ActionButtons = ({ onToggleStatusEdit, isStatusEdit }) => {
         افزودن تیکت
       </Button>
       <Button variant="contained" color="warning" onClick={onToggleStatusEdit}>
-        {isStatusEdit ? "تایید" : "ویرایش وضعیت تیکت ها"}
+        ویرایش وضعیت تیکت ها
       </Button>
     </Box>
   );

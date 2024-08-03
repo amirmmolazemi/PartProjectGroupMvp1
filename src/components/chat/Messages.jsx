@@ -1,5 +1,4 @@
 import { Avatar, Box, Typography } from "@mui/material";
-import PropTypes from "prop-types";
 
 const Message = ({ text, sender }) => (
   <Box
@@ -13,9 +12,7 @@ const Message = ({ text, sender }) => (
       sx={{
         bgcolor: sender === "agent" ? "grey.500" : "primary.main",
       }}
-    >
-      {sender === "user" ? "U" : "A"}
-    </Avatar>
+    ></Avatar>
     <Box
       sx={{
         maxWidth: "70%",
@@ -23,7 +20,7 @@ const Message = ({ text, sender }) => (
         borderRadius: 2,
         bgcolor: "grey.300",
         color: "text.primary",
-        boxShadow: 1,
+        boxShadow: 2,
         marginLeft: sender === "agent" ? 2 : 0,
         marginRight: sender === "agent" ? 0 : 2,
         wordBreak: "break-word",
@@ -33,10 +30,5 @@ const Message = ({ text, sender }) => (
     </Box>
   </Box>
 );
-
-Message.propTypes = {
-  text: PropTypes.string.isRequired,
-  sender: PropTypes.oneOf(["user", "agent"]).isRequired,
-};
 
 export default Message;

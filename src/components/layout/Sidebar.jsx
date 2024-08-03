@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Avatar,
@@ -13,7 +12,7 @@ import Cookies from "js-cookie";
 import menuOptions from "../../constant/menuOptions";
 import toastMaker from "../../utils/toastMaker";
 
-function Sidebar({ onClose }) {
+const Sidebar = ({ onClose }) => {
   const navigate = useNavigate();
 
   const logOut = () => {
@@ -25,24 +24,24 @@ function Sidebar({ onClose }) {
     }
   };
 
-  const BoxStyle = {
-    bgcolor: "#FFF",
-    color: "#1976d2",
-    width: "97%",
-    height: "95vh",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    position: "relative",
-    top: "2.5vh",
-    right: "1.2vw",
-    borderRadius: "12px",
-    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",
-    padding: "20px 0",
-  };
-
   return (
-    <Box sx={BoxStyle}>
+    <Box
+      sx={{
+        bgcolor: "#FFF",
+        color: "#1976d2",
+        width: "97%",
+        height: "95vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        position: "relative",
+        top: "2.5vh",
+        right: "1.2vw",
+        borderRadius: 2,
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",
+        padding: "20px 0",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -93,6 +92,6 @@ function Sidebar({ onClose }) {
       </Box>
     </Box>
   );
-}
+};
 
 export default Sidebar;

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { Box, Card, CardContent, Stack } from "@mui/material";
 import Message from "../components/chat/Messages";
 import SendInput from "../components/chat/SendInput";
@@ -13,19 +13,15 @@ const ChatBox = () => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, []);
-
-  const handleSend = () => {
+  const handleSend = useCallback(() => {
     if (input.trim()) {
-      setMessages((messages) => [...messages, { text: input, sender: "user" }]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: input, sender: "agent" },
+      ]);
       setInput("");
     }
-  };
+  }, [input]);
 
   return (
     <Box
@@ -43,8 +39,6 @@ const ChatBox = () => {
           width: { xs: "100%", sm: 400, md: 500, lg: 600 },
           height: "100%",
           borderRadius: 2,
-          overflow: "hidden",
-          boxShadow: 3,
           display: "flex",
           flexDirection: "column",
         }}
@@ -53,17 +47,8 @@ const ChatBox = () => {
         <CardContent
           sx={{
             padding: 2,
-            display: "flex",
-            flexDirection: "column-reverse",
-            bgcolor: "background.paper",
             flexGrow: 1,
-            maxHeight: {
-              xs: "calc(100vh - 150px)",
-              sm: "calc(100vh - 150px)",
-              md: "calc(100vh - 180px)",
-            },
-            overflow: "auto",
-            "&::-webkit-scrollbar": { display: "none" },
+            overflowY: "auto",
             scrollbarWidth: "none",
           }}
         >

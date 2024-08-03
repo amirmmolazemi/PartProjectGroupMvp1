@@ -11,11 +11,11 @@ function ShowPasswordCheckBox({ setShowPassword, showPassword }) {
         />
       }
       label={
-        <Typography variant="body2" color="white">
+        <Typography variant="body2" sx={{ color: "#fff" }}>
           نمایش گذرواژه
         </Typography>
       }
-      sx={{ color: "white" }}
+      sx={{ color: "#fff" }}
     />
   );
 }

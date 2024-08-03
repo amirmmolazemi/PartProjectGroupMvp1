@@ -3,13 +3,13 @@ import { Box, Button } from "@mui/material";
 function FormButtons({ handleCancel }) {
   return (
     <Box display="flex" gap={2} mt={2}>
-      <Button type="submit" variant="contained" sx={{ flexGrow: 1 }}>
+      <Button type="submit" variant="contained" fullWidth>
         ارسال تیکت
       </Button>
       <Button
         variant="contained"
         color="error"
-        sx={{ flexGrow: 1 }}
+        fullWidth
         onClick={handleCancel}
       >
         لغو عملیات

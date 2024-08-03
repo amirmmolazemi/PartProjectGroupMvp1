@@ -7,7 +7,7 @@ import useCheckCookie from "./useCheckCookie";
 const useDecodeToken = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  // useCheckCookie();
+  useCheckCookie();
 
   useEffect(() => {
     const fetchData = async () => {

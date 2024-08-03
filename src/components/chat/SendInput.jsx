@@ -9,40 +9,28 @@ const SendMessage = ({ input, setInput, handleSend }) => (
       alignItems: "center",
       gap: 1,
       width: "100%",
-      boxSizing: "border-box",
     }}
   >
     <TextField
       placeholder="پیامی را بفرستید"
       value={input}
       onChange={(e) => setInput(e.target.value)}
-      onKeyPress={(e) => {
-        if (e.key === "Enter" && !e.shiftKey) handleSend();
+      onKeyDown={(e) => {
+        if (e.key === "Enter") handleSend();
       }}
       multiline
       minRows={1}
       maxRows={4}
       sx={{
         flexGrow: 1,
-        bgcolor: "background.paper",
         borderRadius: 2,
         boxShadow: 1,
-        "& .MuiInputBase-root": { borderRadius: 2 },
-        "& .MuiOutlinedInput-notchedOutline": { borderColor: "grey.400" },
         "&:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "primary.main",
-        },
-        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
           borderColor: "primary.main",
         },
       }}
     />
-    <Button
-      variant="contained"
-      color="primary"
-      onClick={handleSend}
-      sx={{ borderRadius: 2 }}
-    >
+    <Button variant="contained" color="primary" onClick={handleSend}>
       ارسال
     </Button>
   </Box>

@@ -23,29 +23,21 @@ function DashboardContent() {
       </Grid>
 
       <Paper sx={{ p: 2, mb: 4 }}>
-        <Typography variant="body1" sx={{ mb: 2 }}>
-          Revenue Chart
-        </Typography>
+        <Typography variant="body1">Revenue Chart</Typography>
       </Paper>
 
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={8} md={8} lg={8}>
+        <Grid item xs={12} sm={8}>
           <Paper sx={{ p: 2 }}>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Transactions
-            </Typography>
+            <Typography variant="body1">Transactions</Typography>
           </Paper>
         </Grid>
-        <Grid item xs={12} sm={4} md={4} lg={4}>
+        <Grid item xs={12} sm={4}>
           <Paper sx={{ p: 2, mb: 2 }}>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Oxish Project Team
-            </Typography>
+            <Typography variant="body1">Oxish Project Team</Typography>
           </Paper>
           <Paper sx={{ p: 2 }}>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Upcoming Event Planning
-            </Typography>
+            <Typography variant="body1">Upcoming Event Planning</Typography>
           </Paper>
         </Grid>
       </Grid>

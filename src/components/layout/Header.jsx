@@ -1,13 +1,17 @@
 import { Box, IconButton, Typography, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import jalaliDateGenerator from "../../utils/jalaliDateGenerator";
-import { Add, WbSunny } from "@mui/icons-material";
+import { Add, WbSunny, NightsStay } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import jalaliDateGenerator from "../../utils/jalaliDateGenerator";
 
-function Header({ setIsDrawerOpen }) {
+const Header = ({ setIsDrawerOpen, setDarkMode, darkMode }) => {
   const date = jalaliDateGenerator();
   const isUnder955px = useMediaQuery("(max-width: 955px)");
   const navigate = useNavigate();
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <Box
@@ -16,34 +20,31 @@ function Header({ setIsDrawerOpen }) {
       alignItems="center"
       mb={4}
       p={2}
-      bgcolor="#fff"
+      bgcolor="background.default"
       boxShadow="0 4px 8px rgba(0, 0, 0, 0.1)"
       borderRadius={2}
     >
       <Box display="flex" alignItems="center">
-        <IconButton>
-          <WbSunny />
+        <IconButton onClick={toggleDarkMode}>
+          {darkMode ? <NightsStay /> : <WbSunny />}
         </IconButton>
         <IconButton onClick={() => navigate("/add")}>
           <Add />
         </IconButton>
       </Box>
       <Box display="flex" alignItems="center">
-        {isUnder955px && (
+        {isUnder955px ? (
           <IconButton onClick={() => setIsDrawerOpen(true)}>
             <MenuIcon />
           </IconButton>
-        )}
-        {!isUnder955px && (
-          <Box ml={2}>
-            <Typography variant="h6" color="textSecondary">
-              {date}
-            </Typography>
-          </Box>
+        ) : (
+          <Typography variant="h6" color="textSecondary" ml={2}>
+            {date}
+          </Typography>
         )}
       </Box>
     </Box>
   );
-}
+};
 
 export default Header;

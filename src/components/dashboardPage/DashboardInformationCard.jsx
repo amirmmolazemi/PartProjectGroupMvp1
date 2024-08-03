@@ -2,7 +2,7 @@ import { Grid, Paper, Typography } from "@mui/material";
 
 function DashboardInformationCard({ message, count, bgColor }) {
   return (
-    <Grid item xs={12} sm={4} md={4} lg={4}>
+    <Grid item xs={12} sm={4}>
       <Paper
         sx={{
           p: 2,

@@ -7,12 +7,12 @@ function UsernameField({ setUsername }) {
       margin="normal"
       fullWidth
       label="نام کاربری"
-      name="Username"
+      name="username"
       autoFocus
       autoComplete="off"
       onChange={(e) => setUsername(e.target.value)}
-      InputLabelProps={{ style: { color: "#fff" } }}
-      InputProps={{ style: { color: "#fff" } }}
+      InputLabelProps={{ sx: { color: "#fff !important" } }}
+      InputProps={{ sx: { color: "#fff" } }}
       sx={{ bgcolor: "#333", borderRadius: 1, mb: 2 }}
     />
   );

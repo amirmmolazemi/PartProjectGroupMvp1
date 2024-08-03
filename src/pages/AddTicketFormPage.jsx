@@ -14,6 +14,7 @@ const AddTicket = () => {
     categoryNumber: "",
     status: "pending",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -25,11 +26,20 @@ const AddTicket = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.categoryNumber || !formData.title || !formData.message) {
-      toastMaker("error", "اطلاعات مورد نظر را کامل وارد کنید");
+      toastMaker("error", "لطفا تمام فیلدها را پر کنید.");
       return;
     }
-    const res = await api.post("/");
-    navigate("/chat", { state: { formData } });
+
+    setLoading(true);
+    try {
+      const res = await api.post("/tickets", formData);
+      toastMaker("success", "تیکت با موفقیت اضافه شد.");
+      navigate("/chat", { state: { formData } });
+    } catch (error) {
+      toastMaker("error", "خطا در اضافه کردن تیکت. لطفاً دوباره تلاش کنید.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -65,7 +75,7 @@ const AddTicket = () => {
         autoComplete="off"
       >
         <FormInputs handleChange={handleChange} formData={formData} />
-        <FormButtons handleCancel={handleCancel} />
+        <FormButtons handleCancel={handleCancel} loading={loading} />
       </Box>
     </Box>
   );

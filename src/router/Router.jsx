@@ -8,47 +8,33 @@ import Layout from "../layout/Layout";
 import AddTicketForm from "../pages/AddTicketFormPage";
 import TicketChat from "../pages/TicketChat";
 
-function Router() {
+const routesWithLayout = [
+  { path: "/", element: <DashboardPage /> },
+  { path: "/dashboard", element: <DashboardPage /> },
+  { path: "/tickets", element: <TicketsPage /> },
+  { path: "/settings", element: <SettingPage /> },
+];
+
+const Router = ({ setDarkMode, darkMode }) => {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-      <Route
-        path="/"
-        element={
-          <Layout>
-            <DashboardPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/dashboard"
-        element={
-          <Layout>
-            <DashboardPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/tickets"
-        element={
-          <Layout>
-            <TicketsPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/settings"
-        element={
-          <Layout>
-            <SettingPage />
-          </Layout>
-        }
-      />
+      {routesWithLayout.map(({ path, element }) => (
+        <Route
+          key={path}
+          path={path}
+          element={
+            <Layout setDarkMode={setDarkMode} darkMode={darkMode}>
+              {element}
+            </Layout>
+          }
+        />
+      ))}
       <Route path="/add" element={<AddTicketForm />} />
       <Route path="/chat" element={<TicketChat />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
-}
+};
 
 export default Router;

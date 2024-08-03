@@ -22,10 +22,7 @@ const ChatBox = () => {
 
   const handleSend = () => {
     if (input.trim()) {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: input, sender: "user" },
-      ]);
+      setMessages((messages) => [...messages, { text: input, sender: "user" }]);
       setInput("");
     }
   };

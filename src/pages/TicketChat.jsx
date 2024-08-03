@@ -1,100 +1,90 @@
-import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  List,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { Box, Card, CardContent, Stack } from "@mui/material";
+import Message from "../components/chat/Messages";
+import SendInput from "../components/chat/SendInput";
+import ChatHeader from "../components/chat/ChatHeader";
 
-const TicketChat = () => {
-  const { state } = useLocation();
+const ChatBox = () => {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState("");
+  const [input, setInput] = useState("");
+  const endOfMessagesRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetchMessages();
-    }, 60000);
-    return () => clearInterval(interval);
+    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, []);
 
-  const fetchMessages = async () => {
-    const response = await fetch("/api/get-messages");
-    const data = await response.json();
-    setMessages(data);
-  };
-
-  const handleSendMessage = async () => {
-    await fetch("/api/send-message", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: newMessage,
-        ticketId: state.formData.id,
-      }),
-    });
-    setNewMessage("");
-    fetchMessages();
+  const handleSend = () => {
+    if (input.trim()) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: input, sender: "user" },
+      ]);
+      setInput("");
+    }
   };
 
   return (
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
         justifyContent: "center",
-        minHeight: "100vh",
-        px: 2,
-        py: 4,
-        backgroundColor: "#f4f6f8",
+        alignItems: "center",
+        height: "100vh",
+        bgcolor: "background.default",
+        padding: 2,
       }}
     >
-      <Typography variant="h5" component="h1" gutterBottom textAlign="center">
-        پشتیبانی تیکت
-      </Typography>
-      <Box
+      <Card
         sx={{
-          width: "100%",
-          maxWidth: "600px",
-          p: 3,
-          backgroundColor: "#fff",
-          borderRadius: 1,
+          width: { xs: "100%", sm: 400, md: 500, lg: 600 },
+          height: "100%",
+          borderRadius: 2,
+          overflow: "hidden",
           boxShadow: 3,
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        <List sx={{ mb: 2 }}>
-          {messages.map((message, index) => (
-            <ListItem
-              key={index}
-              sx={{ textAlign: message.isSupport ? "right" : "left" }}
-            >
-              <ListItemText primary={message.text} />
-            </ListItem>
-          ))}
-        </List>
-        <Box display="flex" gap={2} mt={2}>
-          <TextField
-            variant="outlined"
-            fullWidth
-            multiline
-            rows={2}
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-          />
-          <Button variant="contained" onClick={handleSendMessage}>
-            ارسال
-          </Button>
-        </Box>
-      </Box>
+        <ChatHeader />
+        <CardContent
+          sx={{
+            padding: 2,
+            display: "flex",
+            flexDirection: "column-reverse",
+            bgcolor: "background.paper",
+            flexGrow: 1,
+            maxHeight: {
+              xs: "calc(100vh - 150px)",
+              sm: "calc(100vh - 150px)",
+              md: "calc(100vh - 180px)",
+            },
+            overflow: "auto",
+            "&::-webkit-scrollbar": { display: "none" },
+            scrollbarWidth: "none",
+          }}
+        >
+          <Stack spacing={2}>
+            {messages.map((message, index) => (
+              <Message
+                key={index}
+                text={message.text}
+                sender={message.sender}
+              />
+            ))}
+            <div ref={endOfMessagesRef} />
+          </Stack>
+        </CardContent>
+        <SendInput input={input} setInput={setInput} handleSend={handleSend} />
+      </Card>
     </Box>
   );
 };
 
-export default TicketChat;
+export default ChatBox;

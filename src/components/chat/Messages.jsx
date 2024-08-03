@@ -1,4 +1,5 @@
 import { Avatar, Box, Typography } from "@mui/material";
+import agentAvatar from "../../assets/part.jpg";
 
 const Message = ({ text, sender }) => (
   <Box
@@ -9,6 +10,7 @@ const Message = ({ text, sender }) => (
     }}
   >
     <Avatar
+      src={sender === "agent" && agentAvatar}
       sx={{
         bgcolor: sender === "agent" ? "grey.500" : "primary.main",
       }}

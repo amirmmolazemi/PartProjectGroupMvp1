@@ -5,7 +5,7 @@ import Header from "../components/layout/Header";
 import useDecodeToken from "../hooks/useDecodeToken";
 import Loader from "../components/Loader/Loader";
 
-function Layout({ children }) {
+function Layout({ children, setDarkMode, darkMode }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isUnder955px = useMediaQuery("(max-width: 955px)");
 
@@ -56,7 +56,11 @@ function Layout({ children }) {
           transition: "margin-right 0.3s",
         }}
       >
-        <Header setIsDrawerOpen={setIsDrawerOpen} />
+        <Header
+          setIsDrawerOpen={setIsDrawerOpen}
+          setDarkMode={setDarkMode}
+          darkMode={darkMode}
+        />
         {children}
         {/* {!data ? <div>Error Loading Data</div> : children} */}
       </Box>

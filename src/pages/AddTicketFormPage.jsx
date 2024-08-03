@@ -24,16 +24,16 @@ const AddTicket = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = api.post("/");
     if (!formData.categoryNumber || !formData.title || !formData.message) {
       toastMaker("error", "اطلاعات مورد نظر را کامل وارد کنید");
       return;
     }
+    const res = await api.post("/");
     navigate("/chat", { state: { formData } });
   };
 
   const handleCancel = () => {
-    navigate("/dashboard");
+    navigate("/tickets");
   };
 
   return (

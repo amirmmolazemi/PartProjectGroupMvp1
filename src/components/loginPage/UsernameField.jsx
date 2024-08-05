@@ -10,7 +10,7 @@ function UsernameField({ setUsername }) {
       name="username"
       autoFocus
       autoComplete="off"
-      onChange={(e) => setUsername(e.target.value)}
+      onChange={(e) => setUsername(e.target.value.trim())}
       InputLabelProps={{ sx: { color: "#fff !important" } }}
       InputProps={{ sx: { color: "#fff" } }}
       sx={{ bgcolor: "#333", borderRadius: 1, mb: 2 }}

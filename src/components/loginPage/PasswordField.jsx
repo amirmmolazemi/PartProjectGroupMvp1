@@ -9,7 +9,7 @@ function PasswordField({ showPassword, setPassword }) {
       name="password"
       label="گذرواژه"
       type={showPassword ? "text" : "password"}
-      onChange={(e) => setPassword(e.target.value)}
+      onChange={(e) => setPassword(e.target.value.trim())}
       InputLabelProps={{ sx: { color: "#fff !important" } }}
       InputProps={{ sx: { color: "#fff" } }}
       sx={{ bgcolor: "#333", borderRadius: 1, mb: 2 }}

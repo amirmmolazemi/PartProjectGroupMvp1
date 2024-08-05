@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Drawer, Box, CssBaseline, useMediaQuery } from "@mui/material";
 import Sidebar from "../components/layout/Sidebar";
 import Header from "../components/layout/Header";
-import useAuth from "../hooks/useAuth";
-import Loader from "../components/Loader/Loader";
 
 function Layout({ children, setDarkMode, darkMode }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

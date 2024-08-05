@@ -1,14 +1,16 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography, useTheme } from "@mui/material";
 
 function DashboardInformationCard({ message, count, bgColor }) {
+  const theme = useTheme(); // Access the theme
+
   return (
     <Grid item xs={12} sm={4}>
       <Paper
         sx={{
           p: 2,
-          bgcolor: bgColor,
+          bgcolor: bgColor || theme.palette.background.paper,
           borderRadius: 2,
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          boxShadow: theme.shadows[3],
           transition: "transform 0.3s",
           "&:hover": {
             transform: "scale(1.02)",

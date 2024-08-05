@@ -5,6 +5,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  useTheme,
 } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,6 +15,7 @@ import toastMaker from "../../utils/toastMaker";
 
 const Sidebar = ({ onClose }) => {
   const navigate = useNavigate();
+  const theme = useTheme(); // Access the theme
 
   const logOut = () => {
     try {
@@ -27,8 +29,8 @@ const Sidebar = ({ onClose }) => {
   return (
     <Box
       sx={{
-        bgcolor: "#FFF",
-        color: "#1976d2",
+        bgcolor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
         width: "97%",
         height: "95vh",
         display: "flex",
@@ -38,7 +40,7 @@ const Sidebar = ({ onClose }) => {
         top: "2.5vh",
         right: "1.2vw",
         borderRadius: 2,
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)",
+        boxShadow: theme.shadows[3], // Adjust box shadow based on theme
         padding: "20px 0",
       }}
     >
@@ -55,7 +57,6 @@ const Sidebar = ({ onClose }) => {
           src="/path/to/avatar.jpg"
           sx={{ width: 50, height: 50, mb: 2 }}
         />
-        {/* {data.userName} */}
         <List sx={{ width: "100%" }}>
           {menuOptions.map((item) => (
             <ListItem

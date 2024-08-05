@@ -12,7 +12,7 @@ const loginHandler = (username, password) => {
       return;
     }
     try {
-      const response = await api.post("/login", {
+      const response = await api.post("/auth/login", {
         username,
         password,
       });

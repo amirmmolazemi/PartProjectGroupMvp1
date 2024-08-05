@@ -2,16 +2,12 @@ import { useState } from "react";
 import { Drawer, Box, CssBaseline, useMediaQuery } from "@mui/material";
 import Sidebar from "../components/layout/Sidebar";
 import Header from "../components/layout/Header";
-import useDecodeToken from "../hooks/useDecodeToken";
+import useAuth from "../hooks/useAuth";
 import Loader from "../components/Loader/Loader";
 
 function Layout({ children, setDarkMode, darkMode }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isUnder955px = useMediaQuery("(max-width: 955px)");
-
-  // const { data, loading } = useDecodeToken();
-
-  // if (loading) return <Loader />;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -62,7 +58,6 @@ function Layout({ children, setDarkMode, darkMode }) {
           darkMode={darkMode}
         />
         {children}
-        {/* {!data ? <div>Error Loading Data</div> : children} */}
       </Box>
     </Box>
   );

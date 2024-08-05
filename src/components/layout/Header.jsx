@@ -10,8 +10,6 @@ const Header = ({ setIsDrawerOpen, setDarkMode, darkMode }) => {
   const navigate = useNavigate();
 
   const toggleDarkMode = () => {
-    console.log("_+++");
-    
     setDarkMode(!darkMode);
   };
 

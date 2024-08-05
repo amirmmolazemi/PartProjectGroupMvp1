@@ -55,6 +55,7 @@ const Sidebar = ({ onClose }) => {
           src="/path/to/avatar.jpg"
           sx={{ width: 50, height: 50, mb: 2 }}
         />
+        {/* {data.userName} */}
         <List sx={{ width: "100%" }}>
           {menuOptions.map((item) => (
             <ListItem

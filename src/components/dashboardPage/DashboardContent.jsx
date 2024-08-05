@@ -22,25 +22,9 @@ function DashboardContent() {
         />
       </Grid>
 
-      <Paper sx={{ p: 2, mb: 4 }}>
-        <Typography variant="body1">Revenue Chart</Typography>
-      </Paper>
-
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={8}>
-          <Paper sx={{ p: 2 }}>
-            <Typography variant="body1">Transactions</Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Paper sx={{ p: 2, mb: 2 }}>
-            <Typography variant="body1">Oxish Project Team</Typography>
-          </Paper>
-          <Paper sx={{ p: 2 }}>
-            <Typography variant="body1">Upcoming Event Planning</Typography>
-          </Paper>
-        </Grid>
-      </Grid>
+      <Typography variant="h2" textAlign={"center"}>
+        به زودی
+      </Typography>
     </>
   );
 }

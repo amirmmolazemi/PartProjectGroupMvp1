@@ -19,18 +19,20 @@ const TicketFilters = ({
         <RadioGroup
           value={filter}
           onChange={onFilterChange}
-          sx={{
-            flexDirection: { xs: "column", sm: "row" },
-          }}
+          sx={{ flexDirection: { xs: "column", sm: "row" } }}
         >
           <FormControlLabel value="All" control={<Radio />} label="همه" />
-          <FormControlLabel value="Open" control={<Radio />} label="باز" />
           <FormControlLabel
-            value="InProgress"
+            value="completed"
+            control={<Radio />}
+            label="بسته"
+          />
+          <FormControlLabel value="pending" control={<Radio />} label="باز" />
+          <FormControlLabel
+            value="in-progress"
             control={<Radio />}
             label="در حال بررسی"
           />
-          <FormControlLabel value="Closed" control={<Radio />} label="بسته" />
         </RadioGroup>
       </Grid>
       <Grid item xs={12} sm={6}>

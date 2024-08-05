@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import api from "../configs/api";
-
-const useCheckCookie = () => {
+import { jwtDecode } from "jwt-decode";
+const useAuth = (fetchUrl) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    const validateToken = async () => {
+    const checkToken = async () => {
       const token = Cookies.get("token");
       if (!token) {
         navigate("/login");
         return;
       }
+
       try {
         await api.post(
           "/auth/verify-token",
@@ -24,19 +26,28 @@ const useCheckCookie = () => {
             },
           }
         );
+
+        const decoded = jwtDecode(token);
+        const res = await api.get(fetchUrl, {
+          headers: {
+            Authorization: token,
+          },
+        });
+
+        setData({ user: decoded, otherData: res.data });
+        console.log(data);
       } catch (error) {
-        if (error.response && error.response.status === 401) {
-          Cookies.remove("token");
-          navigate("/login");
-        }
+        Cookies.remove("token");
+        navigate("/login");
       } finally {
         setLoading(false);
       }
     };
-    validateToken();
-  }, [navigate]);
 
-  return loading;
+    checkToken();
+  }, [fetchUrl, navigate]);
+
+  return { data, loading };
 };
 
-export default useCheckCookie;
+export default useAuth;

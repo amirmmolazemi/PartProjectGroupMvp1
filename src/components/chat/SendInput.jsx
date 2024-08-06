@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react";
 import { Box, Button, TextField, useTheme } from "@mui/material";
-import api from "../../configs/api";
+import api from "configs/api";
 import Cookies from "js-cookie";
-import toastMaker from "../../utils/toastMaker";
+import toastMaker from "utils/toastMaker";
 
 const SendMessage = ({ input, setInput, fetchMessages, ticketId }) => {
   const theme = useTheme();

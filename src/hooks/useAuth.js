@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import api from "../configs/api";
 import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
+import api from "configs/api";
 const useAuth = (fetchUrl) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);

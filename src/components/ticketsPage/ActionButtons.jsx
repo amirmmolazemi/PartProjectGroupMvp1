@@ -9,7 +9,7 @@ const ActionButtons = ({ onToggleStatusEdit, isStatusEdit, role }) => {
   };
 
   return (
-    <Box mb={2} display="flex" gap={1}>
+    <Box mb={2}>
       {role === "user" ? (
         <Button
           variant="contained"
@@ -19,15 +19,13 @@ const ActionButtons = ({ onToggleStatusEdit, isStatusEdit, role }) => {
           افزودن تیکت
         </Button>
       ) : (
-        <>
-          <Button
-            variant="contained"
-            color="warning"
-            onClick={onToggleStatusEdit}
-          >
-            {isStatusEdit ? "تایید" : "ویرایش وضعیت تیکت ها"}
-          </Button>
-        </>
+        <Button
+          variant="contained"
+          color="warning"
+          onClick={onToggleStatusEdit}
+        >
+          {isStatusEdit ? "تایید" : "ویرایش وضعیت تیکت ها"}
+        </Button>
       )}
     </Box>
   );

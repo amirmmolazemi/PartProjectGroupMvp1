@@ -8,7 +8,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { Add, WbSunny, NightsStay } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import jalaliDateGenerator from "../../utils/jalaliDateGenerator";
+import jalaliDateGenerator from "utils/jalaliDateGenerator";
 
 const Header = ({ setIsDrawerOpen, setDarkMode, darkMode }) => {
   const date = jalaliDateGenerator();

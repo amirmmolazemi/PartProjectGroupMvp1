@@ -12,21 +12,9 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import getStatusLabel from "../../utils/getStatusLabel";
 
-const getStatusLabel = (status) => {
-  switch (status) {
-    case "completed":
-      return "بسته";
-    case "pending":
-      return "باز";
-    case "in-progress":
-      return "در حال بررسی";
-    default:
-      return status;
-  }
-};
-
-const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
+const TicketTable = ({ tickets, isStatusEdit, onStatusChange }) => {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
@@ -45,18 +33,8 @@ const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
 
   return (
     <Paper elevation={3} sx={{ mt: 2, p: 2 }}>
-      <TableContainer
-        sx={{
-          maxHeight: "500px",
-          overflowY: "auto",
-        }}
-      >
-        <Table
-          stickyHeader
-          sx={{
-            tableLayout: "fixed",
-          }}
-        >
+      <TableContainer sx={{ maxHeight: "500px", overflowY: "auto" }}>
+        <Table stickyHeader sx={{ tableLayout: "fixed" }}>
           <TableHead>
             <TableRow>
               <TableCell sx={tableCellStyle}>کد</TableCell>
@@ -68,13 +46,7 @@ const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {loading ? (
-              <TableRow>
-                <TableCell colSpan={6} sx={{ textAlign: "center" }}>
-                  Loading...
-                </TableCell>
-              </TableRow>
-            ) : tickets.length > 0 ? (
+            {tickets.length > 0 ? (
               tickets.map((ticket) => (
                 <TableRow key={ticket.id} hover>
                   <TableCell sx={tableCellStyle}>{ticket.id}</TableCell>
@@ -104,7 +76,7 @@ const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
                     )}
                   </TableCell>
                   <TableCell
-                    sx={(tableCellStyle, { cursor: "pointer" })}
+                    sx={{ ...tableCellStyle, cursor: "pointer" }}
                     onClick={() =>
                       handleRowClick(ticket.id, ticket.description)
                     }
@@ -116,7 +88,7 @@ const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
             ) : (
               <TableRow>
                 <TableCell colSpan={6} sx={{ textAlign: "center" }}>
-                  Ticket not found
+                  تیکتی یافت نشد
                 </TableCell>
               </TableRow>
             )}

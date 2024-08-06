@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
-import NotFound from "../pages/404";
-import DashboardPage from "../pages/DashboardPage";
-import TicketsPage from "../pages/TicketsPage";
-import SettingPage from "../pages/SettingPage";
-import Layout from "../layout/Layout";
-import AddTicketForm from "../pages/AddTicketFormPage";
-import TicketChat from "../pages/TicketChat";
+import LoginPage from "pages/LoginPage";
+import NotFound from "pages/404";
+import DashboardPage from "pages/DashboardPage";
+import TicketsPage from "pages/TicketsPage";
+import SettingPage from "pages/SettingPage";
+import Layout from "layout/Layout";
+import AddTicketForm from "pages/AddTicketFormPage";
+import TicketChat from "pages/TicketChat";
 
 const routesWithLayout = [
   { path: "/", element: <DashboardPage /> },

@@ -1,8 +1,6 @@
-import { Box, Button, useTheme } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 function FormButtons({ handleCancel, loading }) {
-  const theme = useTheme(); // Access the theme
-
   return (
     <Box display="flex" gap={2} mt={2}>
       <Button

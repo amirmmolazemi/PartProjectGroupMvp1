@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
-import UsernameField from "../components/loginPage/UsernameField";
-import PasswordField from "../components/loginPage/PasswordField";
-import SignInButton from "../components/loginPage/SignInButton";
-import loginHandler from "../utils/loginHandler";
-import ShowPasswordCheckBox from "../components/loginPage/ShowPasswordCheckBox";
+import UsernameField from "components/loginPage/UsernameField";
+import PasswordField from "components/loginPage/PasswordField";
+import SignInButton from "components/loginPage/SignInButton";
+import loginHandler from "utils/loginHandler";
+import ShowPasswordCheckBox from "components/loginPage/ShowPasswordCheckBox";
 
 function LoginPage() {
   const [username, setUsername] = useState("");

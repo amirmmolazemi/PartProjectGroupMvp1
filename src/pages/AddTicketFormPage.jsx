@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import api from "../configs/api";
-import toastMaker from "../utils/toastMaker";
-import FormInputs from "../components/addTicketForm/FormInputs";
-import FormButtons from "../components/addTicketForm/FormButtons";
 import Cookies from "js-cookie";
+import api from "configs/api";
+import toastMaker from "utils/toastMaker";
+import FormInputs from "components/addTicketForm/FormInputs";
+import FormButtons from "components/addTicketForm/FormButtons";
 
 const AddTicket = () => {
   const navigate = useNavigate();
-  const theme = useTheme(); // Access the theme
+  const theme = useTheme();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -36,12 +36,12 @@ const AddTicket = () => {
     setLoading(true);
 
     try {
-      const res = await api.post("/ticket/create", formData, {
+      const { data } = await api.post("/ticket/create", formData, {
         headers: {
           Authorization: Cookies.get("token"),
         },
       });
-      const { ticketId } = res.data.data;
+      const { ticketId } = data.data;
       toastMaker("success", "تیکت با موفقیت اضافه شد.");
       navigate("/chat", {
         state: { initialMessage: formData.description, ticketId },
@@ -66,8 +66,8 @@ const AddTicket = () => {
         justifyContent: "center",
         minHeight: "100vh",
         px: 2,
-        bgcolor: theme.palette.background.default, // Adapt to theme
-        color: theme.palette.text.primary, // Adapt to theme
+        bgcolor: theme.palette.background.default,
+        color: theme.palette.text.primary,
       }}
     >
       <Typography variant="h5" component="h1" gutterBottom textAlign="center">
@@ -80,7 +80,7 @@ const AddTicket = () => {
           width: "100%",
           maxWidth: "400px",
           p: 3,
-          backgroundColor: theme.palette.background.paper, // Adapt to theme
+          backgroundColor: theme.palette.background.paper,
           borderRadius: 1,
           boxShadow: theme.shadows[3],
         }}

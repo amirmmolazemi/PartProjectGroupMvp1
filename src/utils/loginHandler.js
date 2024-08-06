@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import api from "../configs/api";
-import toastMaker from "./toastMaker";
+import api from "configs/api";
+import toastMaker from "utils/toastMaker";
 
 const loginHandler = (username, password) => {
   const navigate = useNavigate();

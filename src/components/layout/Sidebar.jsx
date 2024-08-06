@@ -10,8 +10,8 @@ import {
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import menuOptions from "../../constant/menuOptions";
-import toastMaker from "../../utils/toastMaker";
+import menuOptions from "constants/menuOptions";
+import toastMaker from "utils/toastMaker";
 
 const Sidebar = ({ onClose }) => {
   const navigate = useNavigate();

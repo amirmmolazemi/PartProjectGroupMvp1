@@ -1,5 +1,5 @@
 import { TextField, Grid, useTheme } from "@mui/material";
-import inputs from "../../constant/AddTicketForminputs";
+import inputs from "constants/AddTicketForminputs";
 
 function FormInputs({ handleChange, formData }) {
   const theme = useTheme();

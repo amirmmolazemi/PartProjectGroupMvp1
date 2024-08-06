@@ -1,7 +1,7 @@
 import { Grid, Paper, Typography, useTheme } from "@mui/material";
 
 function DashboardInformationCard({ message, count, bgColor }) {
-  const theme = useTheme(); // Access the theme
+  const theme = useTheme();
 
   return (
     <Grid item xs={12} sm={4}>

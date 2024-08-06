@@ -1,22 +1,21 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Box, Card, CardContent, Stack, useTheme } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import Message from "../components/chat/Messages";
-import SendMessage from "../components/chat/SendInput";
-import ChatHeader from "../components/chat/ChatHeader";
-import api from "../configs/api";
-import useAuth from "../hooks/useAuth";
+import Message from "components/chat/Messages";
+import SendMessage from "components/chat/SendInput";
+import ChatHeader from "components/chat/ChatHeader";
+import api from "configs/api";
+import useAuth from "hooks/useAuth";
 import Cookies from "js-cookie";
-import Loader from "../components/Loader/Loader";
+import Loader from "components/Loader/Loader";
+import toastMaker from "src/utils/toastMaker";
 
 const ChatBox = () => {
   const location = useLocation();
   const { ticketId, initialMessage } = location.state || {};
 
-  const { data: authData, loading: authLoading } = useAuth(
-    `message/get/${ticketId}`
-  );
-  const userRole = authData?.user?.role?.englishName;
+  const { data, loading } = useAuth(`message/get/${ticketId}`);
+  const userRole = data?.user?.role.englishName;
   const normalizedUserRole =
     userRole === "admin" || userRole === "support" ? "agent" : userRole;
 
@@ -27,23 +26,19 @@ const ChatBox = () => {
   );
   const [input, setInput] = useState("");
   const [loadingMessages, setLoadingMessages] = useState(false);
-  const endOfMessagesRef = useRef(null);
-
-  useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
 
   const fetchMessages = useCallback(async () => {
     setLoadingMessages(true);
     try {
-      const res = await api.get(`/message/get/${ticketId}`, {
+      const { data } = await api.get(`/message/get/${ticketId}`, {
         headers: {
           Authorization: Cookies.get("token"),
         },
       });
 
-      setMessages(res.data.data.ticketMessages);
+      setMessages(data.data.ticketMessages);
     } catch (error) {
+      toastMaker("error", "خطا هنگام دریافت پیام ها");
     } finally {
       setLoadingMessages(false);
     }
@@ -57,24 +52,13 @@ const ChatBox = () => {
     }
   }, [ticketId, fetchMessages]);
 
-  const handleSend = useCallback(() => {
-    if (input.trim()) {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: input, sender: normalizedUserRole },
-      ]);
-      setInput("");
-    }
-  }, [input, normalizedUserRole]);
-
-  if (authLoading || loadingMessages) return <Loader />;
+  if (loading || loadingMessages) return <Loader />;
 
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
         height: "100vh",
         bgcolor: theme.palette.background.default,
         padding: 2,
@@ -117,7 +101,6 @@ const ChatBox = () => {
                 />
               );
             })}
-            <div ref={endOfMessagesRef} />
           </Stack>
         </CardContent>
         <SendMessage

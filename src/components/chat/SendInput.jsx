@@ -1,13 +1,41 @@
+import { useState, useCallback } from "react";
 import { Box, Button, TextField, useTheme } from "@mui/material";
+import api from "../../configs/api";
+import Cookies from "js-cookie";
 
-const SendMessage = ({ input, setInput, handleSend }) => {
-  const theme = useTheme(); // Access the theme
+const SendMessage = ({ input, setInput, fetchMessages, ticketId }) => {
+  const theme = useTheme();
+  const [loading, setLoading] = useState(false);
+
+  const handleSend = useCallback(async () => {
+    if (input.trim()) {
+      setLoading(true);
+      try {
+        await api.post(
+          "/message/add",
+          { ticketId, message: input },
+          {
+            headers: {
+              Authorization: Cookies.get("token"),
+            },
+          }
+        );
+
+        await fetchMessages();
+        setInput("");
+      } catch (error) {
+        console.error("Error sending message:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  }, [input, setInput, fetchMessages]);
 
   return (
     <Box
       sx={{
         padding: 2,
-        borderTop: `1px solid ${theme.palette.divider}`, // Adapt to theme
+        borderTop: `1px solid ${theme.palette.divider}`,
         display: "flex",
         alignItems: "center",
         gap: 1,
@@ -41,8 +69,13 @@ const SendMessage = ({ input, setInput, handleSend }) => {
           },
         }}
       />
-      <Button variant="contained" color="primary" onClick={handleSend}>
-        ارسال
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSend}
+        disabled={loading}
+      >
+        {loading ? "در حال ارسال..." : "ارسال"}
       </Button>
     </Box>
   );

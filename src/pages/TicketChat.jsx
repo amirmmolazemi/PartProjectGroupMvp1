@@ -15,11 +15,14 @@ const ChatBox = () => {
   const { data: authData, loading: authLoading } = useAuth(
     `message/get/${ticketId}`
   );
-  const userRole = authData?.role;
-  const theme = useTheme(); // Access the theme
+  const userRole = authData?.user?.role?.englishName;
+  const normalizedUserRole =
+    userRole === "admin" || userRole === "support" ? "agent" : userRole;
+
+  const theme = useTheme();
 
   const [messages, setMessages] = useState(
-    initialMessage ? [{ text: initialMessage, sender: "user" }] : []
+    initialMessage ? [{ text: initialMessage, sender: normalizedUserRole }] : []
   );
   const [input, setInput] = useState("");
   const endOfMessagesRef = useRef(null);
@@ -30,12 +33,13 @@ const ChatBox = () => {
 
   const fetchMessages = useCallback(async () => {
     try {
-      const res = await api.get(`/chat/${ticketId}`, {
+      const res = await api.get(`/message/get/${ticketId}`, {
         headers: {
           Authorization: Cookies.get("token"),
         },
       });
-      setMessages(res.data.messages);
+
+      setMessages(res.data.data.ticketMessages);
     } catch (error) {
       console.log(error);
     }
@@ -53,11 +57,11 @@ const ChatBox = () => {
     if (input.trim()) {
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: input, sender: userRole === "support" ? "agent" : "user" },
+        { text: input, sender: normalizedUserRole },
       ]);
       setInput("");
     }
-  }, [input, userRole]);
+  }, [input, normalizedUserRole]);
 
   if (authLoading) return <div>Loading...</div>;
 
@@ -79,7 +83,7 @@ const ChatBox = () => {
           borderRadius: 2,
           display: "flex",
           flexDirection: "column",
-          boxShadow: theme.shadows[3], // Adjust box shadow based on theme
+          boxShadow: theme.shadows[3],
         }}
       >
         <ChatHeader />
@@ -90,24 +94,33 @@ const ChatBox = () => {
             overflowY: "auto",
             bgcolor: theme.palette.background.paper,
             scrollbarWidth: "none",
-            boxShadow: theme.shadows[1], // Adjust box shadow based on theme
+            boxShadow: theme.shadows[1],
           }}
         >
           <Stack spacing={2}>
-            {messages.map((message, index) => (
-              <Message
-                key={index}
-                text={message.text}
-                sender={message.sender}
-              />
-            ))}
+            {messages.map((message) => {
+              const messageSender =
+                message.user.role.englishName === "admin" ||
+                message.user.role.englishName === "support"
+                  ? "agent"
+                  : message.user.role.englishName;
+              return (
+                <Message
+                  key={message.id}
+                  text={message.message}
+                  sender={messageSender}
+                  currentUserRole={normalizedUserRole}
+                />
+              );
+            })}
             <div ref={endOfMessagesRef} />
           </Stack>
         </CardContent>
         <SendMessage
           input={input}
           setInput={setInput}
-          handleSend={handleSend}
+          fetchMessages={fetchMessages}
+          ticketId={ticketId}
         />
       </Card>
     </Box>

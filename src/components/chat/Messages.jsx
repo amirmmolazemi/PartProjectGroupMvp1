@@ -1,24 +1,28 @@
 import { Avatar, Box, Typography, useTheme } from "@mui/material";
-import agentAvatar from "../../assets/part.jpg";
 
-const Message = ({ text, sender }) => {
-  const theme = useTheme(); // Access the theme
+const Message = ({ text, sender, currentUserRole }) => {
+  const theme = useTheme();
+  const isCurrentUser = sender === currentUserRole;
 
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "center",
-        flexDirection: "row",
+        flexDirection: isCurrentUser ? "row" : "row-reverse",
+        marginBottom: 2,
       }}
     >
       <Avatar
-        src={sender === "agent" && agentAvatar}
         sx={{
           bgcolor:
             sender === "user"
               ? theme.palette.primary.main
+              : sender === "admin" || sender === "support"
+              ? theme.palette.primary.main
               : theme.palette.grey[500],
+          marginLeft: 2,
+          marginRight: 2,
         }}
       />
       <Box
@@ -26,11 +30,11 @@ const Message = ({ text, sender }) => {
           maxWidth: "70%",
           padding: 1.5,
           borderRadius: 2,
-          bgcolor: theme.palette.primary.dark,
+          bgcolor: isCurrentUser
+            ? theme.palette.primary.dark
+            : theme.palette.primary.contrastText,
           color: theme.palette.text.primary,
           boxShadow: theme.shadows[1],
-          marginLeft: 2,
-          marginRight: 2,
           wordBreak: "break-word",
         }}
       >

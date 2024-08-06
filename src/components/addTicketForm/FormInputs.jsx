@@ -2,7 +2,7 @@ import { TextField, Grid, useTheme } from "@mui/material";
 import inputs from "../../constant/AddTicketForminputs";
 
 function FormInputs({ handleChange, formData }) {
-  const theme = useTheme(); // Access the theme
+  const theme = useTheme();
 
   return (
     <Grid container spacing={2}>
@@ -20,21 +20,21 @@ function FormInputs({ handleChange, formData }) {
             multiline={input.multiline}
             rows={input.rows}
             InputProps={{
-              style: { color: theme.palette.text.primary }, // Adapt to theme
+              style: { color: theme.palette.text.primary },
             }}
             InputLabelProps={{
-              style: { color: theme.palette.text.secondary }, // Adapt to theme
+              style: { color: theme.palette.text.secondary },
             }}
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  borderColor: theme.palette.text.secondary, // Adapt to theme
+                  borderColor: theme.palette.text.secondary,
                 },
                 "&:hover fieldset": {
-                  borderColor: theme.palette.primary.main, // Adapt to theme
+                  borderColor: theme.palette.primary.main,
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: theme.palette.primary.main, // Adapt to theme
+                  borderColor: theme.palette.primary.main,
                 },
               },
             }}

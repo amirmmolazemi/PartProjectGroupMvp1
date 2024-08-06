@@ -19,7 +19,6 @@ const loginHandler = (username, password) => {
       const { token } = response.data.data;
       if (token) {
         Cookies.set("token", token, {
-          // secure: true,
           sameSite: "Strict",
           expires: 1,
         });

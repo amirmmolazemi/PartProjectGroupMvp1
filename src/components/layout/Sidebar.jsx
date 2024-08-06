@@ -15,7 +15,7 @@ import toastMaker from "../../utils/toastMaker";
 
 const Sidebar = ({ onClose }) => {
   const navigate = useNavigate();
-  const theme = useTheme(); // Access the theme
+  const theme = useTheme();
 
   const logOut = () => {
     try {
@@ -40,7 +40,7 @@ const Sidebar = ({ onClose }) => {
         top: "2.5vh",
         right: "1.2vw",
         borderRadius: 2,
-        boxShadow: theme.shadows[3], // Adjust box shadow based on theme
+        boxShadow: theme.shadows[3],
         padding: "20px 0",
       }}
     >

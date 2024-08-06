@@ -1,10 +1,19 @@
-import styles from "./styles/Loader.module.css";
+import { useTheme } from "@emotion/react";
+import { Box, CircularProgress } from "@mui/material";
 
 function Loader() {
+  const theme = useTheme();
   return (
-    <div className={styles.loaderContainer}>
-      <div className={styles.loader}></div>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        bgcolor: theme.palette.background.default,
+      }}
+    >
+      <CircularProgress />
+    </Box>
   );
 }
 

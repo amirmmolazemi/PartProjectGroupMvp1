@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import TicketFilters from "../components/ticketsPage/TicketFilters";
 import TicketTable from "../components/ticketsPage/TicketTable";
 import ButtonActions from "../components/ticketsPage/ActionButtons";
 import useAuth from "../hooks/useAuth";
+import Loader from "../components/Loader/Loader";
 
 function TicketsPage() {
   const [tickets, setTickets] = useState([]);
@@ -22,6 +23,7 @@ function TicketsPage() {
       setUserRole(data.user.role.englishName);
     }
   }, [data, loading]);
+
   useEffect(() => {
     let newFilteredTickets = tickets;
 
@@ -48,6 +50,10 @@ function TicketsPage() {
     );
     setTickets(updatedTickets);
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <Container maxWidth="lg" sx={{ mt: 2 }}>

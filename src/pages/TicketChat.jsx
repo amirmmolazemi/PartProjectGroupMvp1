@@ -7,6 +7,7 @@ import ChatHeader from "../components/chat/ChatHeader";
 import api from "../configs/api";
 import useAuth from "../hooks/useAuth";
 import Cookies from "js-cookie";
+import Loader from "../components/Loader/Loader";
 
 const ChatBox = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const ChatBox = () => {
     initialMessage ? [{ text: initialMessage, sender: normalizedUserRole }] : []
   );
   const [input, setInput] = useState("");
+  const [loadingMessages, setLoadingMessages] = useState(false);
   const endOfMessagesRef = useRef(null);
 
   useEffect(() => {
@@ -32,6 +34,7 @@ const ChatBox = () => {
   }, [messages]);
 
   const fetchMessages = useCallback(async () => {
+    setLoadingMessages(true);
     try {
       const res = await api.get(`/message/get/${ticketId}`, {
         headers: {
@@ -41,7 +44,8 @@ const ChatBox = () => {
 
       setMessages(res.data.data.ticketMessages);
     } catch (error) {
-      console.log(error);
+    } finally {
+      setLoadingMessages(false);
     }
   }, [ticketId]);
 
@@ -63,7 +67,7 @@ const ChatBox = () => {
     }
   }, [input, normalizedUserRole]);
 
-  if (authLoading) return <div>Loading...</div>;
+  if (authLoading || loadingMessages) return <Loader />;
 
   return (
     <Box

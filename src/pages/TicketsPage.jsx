@@ -18,7 +18,6 @@ function TicketsPage() {
 
   useEffect(() => {
     if (!loading && data) {
-      console.log("Fetched data:", data);
       setTickets(data.otherData.data);
       setUserRole(data.user.role.englishName);
     }

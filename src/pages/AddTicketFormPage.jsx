@@ -46,9 +46,7 @@ const AddTicket = () => {
       navigate("/chat", {
         state: { initialMessage: formData.description, ticketId },
       });
-      console.log(ticketId, res.data);
     } catch (error) {
-      console.log(error);
       toastMaker("error", "خطا در اضافه کردن تیکت. لطفاً دوباره تلاش کنید.");
     } finally {
       setLoading(false);

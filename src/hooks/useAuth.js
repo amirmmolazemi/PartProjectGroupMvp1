@@ -35,7 +35,6 @@ const useAuth = (fetchUrl) => {
         });
 
         setData({ user: decoded, otherData: res.data });
-        console.log(data);
       } catch (error) {
         Cookies.remove("token");
         navigate("/login");

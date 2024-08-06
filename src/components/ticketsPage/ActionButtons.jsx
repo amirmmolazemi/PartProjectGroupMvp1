@@ -27,13 +27,6 @@ const ActionButtons = ({ onToggleStatusEdit, isStatusEdit, role }) => {
           >
             {isStatusEdit ? "تایید" : "ویرایش وضعیت تیکت ها"}
           </Button>
-          <Button
-            variant="contained"
-            color="warning"
-            onClick={onToggleStatusEdit}
-          >
-            {isStatusEdit ? "تایید" : "ویرایش اولویت بندی تیکت ها"}
-          </Button>
         </>
       )}
     </Box>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const ChatHeader = () => {
   const navigate = useNavigate();
-  const theme = useTheme(); // Access the theme
+  const theme = useTheme();
 
   return (
     <CardHeader
@@ -18,7 +18,7 @@ const ChatHeader = () => {
       sx={{
         bgcolor: theme.palette.background.paper,
         color: theme.palette.text.primary,
-        boxShadow: theme.shadows[1], // Adjust box shadow based on theme
+        boxShadow: theme.shadows[1],
       }}
     />
   );

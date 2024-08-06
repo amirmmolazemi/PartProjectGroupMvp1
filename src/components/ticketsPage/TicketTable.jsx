@@ -1,3 +1,4 @@
+import { Visibility } from "@mui/icons-material";
 import {
   Paper,
   Table,
@@ -29,14 +30,11 @@ const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width:600px)");
 
-  // Define styles for the table cells
   const tableCellStyle = {
     textAlign: "center",
-    padding: isSmallScreen ? "8px" : "16px", // Add padding for better spacing
-    maxWidth: isSmallScreen ? "40px" : "150px", // Adjust width based on screen size
+    padding: isSmallScreen ? "8px" : "16px",
+    minWidth: isSmallScreen ? "80px" : "120px",
     overflow: "hidden",
-    // textOverflow: "ellipsis", // Add ellipsis for overflow text
-    // whiteSpace: "nowrap", // Prevent text wrapping
   };
 
   const handleRowClick = (ticketId, ticketDescription) => {
@@ -49,12 +47,16 @@ const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
     <Paper elevation={3} sx={{ mt: 2, p: 2 }}>
       <TableContainer
         sx={{
-          maxHeight: "500px", // Set fixed height for vertical scrolling
-          overflowY: "auto", // Enable vertical scrolling
-          overflowX: "auto", // Enable horizontal scrolling
+          maxHeight: "500px",
+          overflowY: "auto",
         }}
       >
-        <Table stickyHeader>
+        <Table
+          stickyHeader
+          sx={{
+            tableLayout: "fixed",
+          }}
+        >
           <TableHead>
             <TableRow>
               <TableCell sx={tableCellStyle}>کد</TableCell>
@@ -62,23 +64,19 @@ const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
               <TableCell sx={tableCellStyle}>توضیحات</TableCell>
               <TableCell sx={tableCellStyle}>اولویت</TableCell>
               <TableCell sx={tableCellStyle}>وضعیت</TableCell>
+              <TableCell sx={tableCellStyle}>دیدن گفتگو</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={5} sx={{ textAlign: "center" }}>
+                <TableCell colSpan={6} sx={{ textAlign: "center" }}>
                   Loading...
                 </TableCell>
               </TableRow>
             ) : tickets.length > 0 ? (
               tickets.map((ticket) => (
-                <TableRow
-                  key={ticket.id}
-                  hover
-                  onClick={() => handleRowClick(ticket.id, ticket.description)}
-                  sx={{ cursor: "pointer" }}
-                >
+                <TableRow key={ticket.id} hover>
                   <TableCell sx={tableCellStyle}>{ticket.id}</TableCell>
                   <TableCell sx={tableCellStyle}>{ticket.title}</TableCell>
                   <TableCell sx={tableCellStyle}>
@@ -105,11 +103,19 @@ const TicketTable = ({ tickets, isStatusEdit, onStatusChange, loading }) => {
                       getStatusLabel(ticket.status)
                     )}
                   </TableCell>
+                  <TableCell
+                    sx={(tableCellStyle, { cursor: "pointer" })}
+                    onClick={() =>
+                      handleRowClick(ticket.id, ticket.description)
+                    }
+                  >
+                    <Visibility />
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={5} sx={{ textAlign: "center" }}>
+                <TableCell colSpan={6} sx={{ textAlign: "center" }}>
                   Ticket not found
                 </TableCell>
               </TableRow>

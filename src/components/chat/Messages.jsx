@@ -16,7 +16,7 @@ const Message = ({ text, sender, currentUserRole }) => {
       <Avatar
         sx={{
           bgcolor:
-            sender === "user"
+            sender === "agent"
               ? theme.palette.primary.main
               : sender === "admin" || sender === "support"
               ? theme.palette.primary.main
@@ -33,7 +33,7 @@ const Message = ({ text, sender, currentUserRole }) => {
           bgcolor: isCurrentUser
             ? theme.palette.primary.dark
             : theme.palette.primary.contrastText,
-          color: theme.palette.text.primary,
+          color: isCurrentUser && "#fff",
           boxShadow: theme.shadows[1],
           wordBreak: "break-word",
         }}

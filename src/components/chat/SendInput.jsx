@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { Box, Button, TextField, useTheme } from "@mui/material";
 import api from "../../configs/api";
 import Cookies from "js-cookie";
+import toastMaker from "../../utils/toastMaker";
 
 const SendMessage = ({ input, setInput, fetchMessages, ticketId }) => {
   const theme = useTheme();
@@ -24,7 +25,7 @@ const SendMessage = ({ input, setInput, fetchMessages, ticketId }) => {
         await fetchMessages();
         setInput("");
       } catch (error) {
-        console.error("Error sending message:", error);
+        toastMaker("error", "Error sending message:");
       } finally {
         setLoading(false);
       }

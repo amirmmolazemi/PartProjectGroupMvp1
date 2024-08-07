@@ -4,31 +4,31 @@ import useAuth from "hooks/useAuth";
 import Loader from "components/Loader/Loader";
 
 function DashboardPage() {
-  // const { data, loading } = useAuth("/info/dashboard");
+  const { data, loading } = useAuth("/info/dashboard");
   const theme = useTheme();
 
-  // if (loading) {
-  //   return <Loader />;
-  // }
+  if (loading) {
+    return <Loader />;
+  }
   const bgColorByTheme = theme.palette.background.default;
-  // const count = data.otherData.data.dashboardData.totalTickets;
+  const count = data.otherData.data.dashboardData;
 
   return (
     <>
       <Grid container spacing={2} mb={4}>
         <DashboardInformationCard
           message="مجموع کل تیکت ها"
-          // count={count}
+          count={count.totalTickets}
           bgColor={bgColorByTheme}
         />
         <DashboardInformationCard
           message="تیکت های بسته:"
-          // count={count}
+          count={count.closedTickets}
           bgColor={bgColorByTheme}
         />
         <DashboardInformationCard
           message="تیکت های باز:"
-          // count={count}
+          count={count.openTickets}
           bgColor={bgColorByTheme}
         />
       </Grid>
